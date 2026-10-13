@@ -310,7 +310,7 @@ src="https://www.facebook.com/tr?id=2826953844350921&ev=PageView&noscript=1"/></
     gtag('consent','update',{ad_storage:'granted',analytics_storage:'granted',ad_user_data:'granted',ad_personalization:'granted'});
   } }catch(e){}
 </script>
-<script src="/analytics.js"></script>
+<script src="/analytics.js" defer></script>
 """
 
 CONSENT = """

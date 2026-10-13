@@ -183,11 +183,8 @@ header{
     linear-gradient(180deg,var(--bg) 0%,var(--bg-2) 100%);
 }
 /* full-bleed hero background image */
-.hero-bg{position:absolute;inset:0;z-index:0;opacity:0;transition:opacity 1s ease}
-.hero-bg.loaded{opacity:1}
+.hero-bg{position:absolute;inset:0;z-index:0}
 .hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center}
-.hero-bg-mobile{position:absolute;inset:0;z-index:0;background-size:cover;background-position:center;opacity:0;transition:opacity 1s ease;display:none}
-.hero-bg-mobile.loaded{opacity:1}
 /* dark gradient overlay so the text stays readable over the photo */
 .hero-overlay{
   position:absolute;inset:0;z-index:1;pointer-events:none;
@@ -641,7 +638,7 @@ function addonImgErr(img){
 </script>
 
 <!-- Google Analytics 4 — base loader (pageview + config). Swap the ID inside analytics.js -->
-<script src="/analytics.js"></script>
+<script src="/analytics.js" defer></script>
 <script type="application/ld+json">
 {
   "@context":"https://schema.org",
@@ -722,14 +719,13 @@ function addonImgErr(img){
 <!-- HERO -->
 <section class="hero">
   <div class="hero-bg" id="heroBg"><img id="heroImg" src="images/hero.jpg" alt="The Plush House luxury sofa" width="1200" height="805" fetchpriority="high" decoding="async"></div>
-  <div class="hero-bg-mobile" id="heroBgMobile"></div>
   <div class="hero-overlay"></div>
   <div class="wrap">
     <div class="hero-inner">
-      <span class="eyebrow reveal">Delivered · Assembled · Placed In Your Home</span>
-      <h1 class="serif reveal">Sink into<br><em>everyday luxury.</em></h1>
-      <p class="lead reveal">Deep-seated, plush sofas built for the way you really live. Our team brings it into your home, assembles it and places it exactly where you want it &mdash; and you settle only once you are happy with it.</p>
-      <div class="hero-cta reveal">
+      <span class="eyebrow">Delivered · Assembled · Placed In Your Home</span>
+      <h1 class="serif">Sink into<br><em>everyday luxury.</em></h1>
+      <p class="lead">Deep-seated, plush sofas built for the way you really live. Our team brings it into your home, assembles it and places it exactly where you want it &mdash; and you settle only once you are happy with it.</p>
+      <div class="hero-cta">
         <a href="#collection" class="btn btn-primary">View the collection</a>
         <a id="heroWa" class="btn btn-ghost" href="#">Ask us on WhatsApp</a>
       </div>
@@ -1185,13 +1181,7 @@ const generalWa = waText("Hi The Plush House! I'd like to know more about your s
 });
 document.getElementById("year").textContent=new Date().getFullYear();
 
-(function loadHero(){
-  const img=document.getElementById("heroImg"), bg=document.getElementById("heroBg");
-  const done=()=>bg.classList.add("loaded");
-  if(img.complete) done(); else img.addEventListener("load",done,{once:true});
-  const m=document.getElementById("heroBgMobile");
-  if(m){ m.style.backgroundImage='url("images/hero.jpg")'; m.classList.add("loaded"); }
-})();
+
 
 /* placeholder block for missing images */
 function placeholderHTML(name){
