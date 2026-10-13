@@ -280,8 +280,8 @@ header{
 .price small{font-size:.72rem;color:var(--muted-2);letter-spacing:.1em;text-transform:uppercase;font-family:'Manrope',sans-serif}
 .stool-incl{font-size:.72rem;color:var(--wa);letter-spacing:.04em;font-weight:600;background:rgba(37,211,102,.08);border:1px solid rgba(37,211,102,.2);padding:3px 8px;border-radius:2px;white-space:nowrap}
 .stool-add{font-size:.72rem;color:var(--brass);letter-spacing:.04em;font-weight:600;background:rgba(201,168,106,.08);border:1px solid rgba(201,168,106,.2);padding:3px 8px;border-radius:2px;white-space:nowrap}
-.card-actions{display:flex;gap:10px}
-.card-actions .btn{flex:1;justify-content:center;padding:.8em 1em;font-size:.84rem}
+.card-actions{display:flex;gap:8px;flex-wrap:wrap}
+.card-actions .btn{flex:1 1 30%;justify-content:center;padding:.8em .7em;font-size:.8rem;white-space:nowrap}
 
 /* ---------- Why us ---------- */
 .why{background:var(--bg-2);border-top:1px solid var(--line-soft)}
@@ -297,6 +297,12 @@ header{
   border:1px solid var(--line);border-radius:3px;text-align:center}
 .tp-collect h3{font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:500;margin-bottom:8px}
 .tp-collect p{color:var(--muted);font-size:.9rem;margin-bottom:20px}
+
+/* ---------- Category strip ---------- */
+.cat-strip{display:flex;flex-wrap:wrap;gap:10px;margin:-18px 0 36px}
+.cat-strip a{font-size:.82rem;letter-spacing:.04em;color:var(--muted);border:1px solid var(--line-soft);
+  border-radius:2px;padding:9px 16px;transition:border-color .2s,color .2s}
+.cat-strip a:hover{border-color:var(--brass);color:var(--brass-bright);text-decoration:none}
 
 /* ---------- Accessories ---------- */
 .acc{background:var(--bg);border-top:1px solid var(--line-soft)}
@@ -347,7 +353,7 @@ header{
 
 /* ---------- Footer ---------- */
 footer{border-top:1px solid var(--line-soft);background:var(--bg-2);padding:56px 0 30px}
-.foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr 1fr;gap:32px;margin-bottom:40px}
 .foot-grid .brand .name{font-size:1.3rem}
 .foot-grid p{color:var(--muted);font-size:.88rem;margin-top:14px;max-width:300px}
 .foot-col h4{font-size:.72rem;letter-spacing:.26em;text-transform:uppercase;color:var(--brass);margin-bottom:16px}
@@ -745,6 +751,13 @@ function addonImgErr(img){
       <h2 class="serif">Sofas worth coming home to.</h2>
       <p>Every piece is chosen for deep comfort and a finish that lifts the whole room. Tap any sofa to order in under a minute.</p>
     </div>
+    <nav class="cat-strip reveal" aria-label="Sofa collections">
+      <a href="/corner-sofas.html">Corner Sofas</a>
+      <a href="/u-shape-sofas.html">U-Shape Sofas</a>
+      <a href="/l-shape-sofas.html">L-Shape Sofas</a>
+      <a href="/2-and-3-seater-sofas.html">2 &amp; 3 Seater Sets</a>
+      <a href="/chesterfield-sofas.html">Chesterfield Sofas</a>
+    </nav>
     <div class="grid" id="productGrid"></div>
   </div>
 </section>
@@ -958,6 +971,14 @@ function addonImgErr(img){
         <p>Handcrafted luxury sofas, delivered and assembled in your home across the United Kingdom &mdash; you settle only once it is in place and you are happy.</p>
       </div>
       <div class="foot-col">
+        <h4>Sofas</h4>
+        <a href="/corner-sofas.html">Corner Sofas</a>
+        <a href="/u-shape-sofas.html">U-Shape Sofas</a>
+        <a href="/l-shape-sofas.html">L-Shape Sofas</a>
+        <a href="/2-and-3-seater-sofas.html">2 &amp; 3 Seater Sets</a>
+        <a href="/chesterfield-sofas.html">Chesterfield Sofas</a>
+      </div>
+      <div class="foot-col">
         <h4>Explore</h4>
         <a href="#collection">Collection</a>
         <a href="#accessories">Accessories</a>
@@ -1096,45 +1117,45 @@ function addonImgErr(img){
    differs from UK Sofa Hub (#1) and Barki (#2). Photos are NOT mirrored.
 ============================================================ */
 const PRODUCTS = [
-  { slug:"ushape", name:"U-Shape", price:799, images:8, tag:"Family Favourite", stool:"add", cover:4,
+  { slug:"ushape", url:"u-shape-sofa", name:"U-Shape", price:799, images:8, tag:"Family Favourite", stool:"add", cover:4,
     desc:"The ultimate family sofa. Our U-Shape collection wraps your room in comfort with generous seating for the whole household." },
-  { slug:"lilly-corner", name:"Lilly Corner", price:799, images:8, tag:"Bestseller", stool:"add",
+  { slug:"lilly-corner", url:"lilly-corner-sofa", name:"Lilly Corner", price:799, images:8, tag:"Bestseller", stool:"add",
     desc:"Soft channel-stitched styling with plush, pillow-back comfort. The Lilly corner is a warm, inviting centrepiece for any family living room." },
-  { slug:"ashton-corner", name:"Ashton Corner", price:849, images:4, tag:"", stool:"add", cover:"last",
+  { slug:"ashton-corner", url:"ashton-corner-sofa", name:"Ashton Corner", price:849, images:4, tag:"", stool:"add", cover:"last",
     desc:"A clean-lined corner sofa with deep cushioning and a contemporary silhouette. Perfect for modern living spaces." },
-  { slug:"verona-corner", name:"Verona Corner", price:699, images:5, tag:"Bestseller", stool:"add", cover:2,
+  { slug:"verona-corner", url:"verona-corner-sofa", name:"Verona Corner", price:699, images:5, tag:"Bestseller", stool:"add", cover:2,
     desc:"Italian-inspired elegance meets everyday comfort. The Verona is a statement piece for any living room." },
-  { slug:"lilly-set", name:"Lilly 2+3 Seater", price:1149, images:2, tag:"", cover:1,
+  { slug:"lilly-set", url:"lilly-2-and-3-seater-sofa", name:"Lilly 2+3 Seater", price:1149, images:2, tag:"", cover:1,
     desc:"The Lilly two-seater and three-seater set — the same plush channel-stitched design, sold as a matching pair to fill your living room." },
-  { slug:"lilly-ushape", name:"Lilly U-Shape", price:849, images:3, tag:"", stool:"add", cover:2,
+  { slug:"lilly-ushape", url:"lilly-u-shape-sofa", name:"Lilly U-Shape", price:849, images:3, tag:"", stool:"add", cover:2,
     desc:"The Lilly in a wraparound U-shape — generous family seating with the same soft channel-stitched finish." },
-  { slug:"lilly-lshape", name:"Lilly L-Shape", price:849, images:4, tag:"", stool:"add",
+  { slug:"lilly-lshape", url:"lilly-l-shape-sofa", name:"Lilly L-Shape", price:849, images:4, tag:"", stool:"add",
     desc:"The Lilly in a space-smart L-shape — plush channel-stitched comfort that fits neatly into modern rooms." },
-  { slug:"ashton-set", name:"Italian Chesterfield", price:949, images:1, tag:"",
+  { slug:"ashton-set", url:"italian-chesterfield-sofa", name:"Italian Chesterfield", price:949, images:1, tag:"",
     desc:"A deep-buttoned Italian take on the Chesterfield — two-seater and three-seater, sold as a matching pair." },
-  { slug:"ashton-lshape", name:"Ashton L-Shape", price:849, images:1, tag:"", stool:"add",
+  { slug:"ashton-lshape", url:"ashton-l-shape-sofa", name:"Ashton L-Shape", price:849, images:1, tag:"", stool:"add",
     desc:"The Ashton in a compact L-shape — contemporary styling and deep comfort, perfect for modern living spaces." },
-  { slug:"shannon-corner", name:"Harrison Corner", price:749, images:5, tag:"", stool:"add", cover:"last",
+  { slug:"shannon-corner", url:"harrison-corner-sofa", name:"Harrison Corner", price:749, images:5, tag:"", stool:"add", cover:"last",
     desc:"Timeless and robust, the Harrison brings classic British furniture craftsmanship to your home." },
-  { slug:"shannon-set", name:"Harrison 2+3 Seater", price:799, images:1, tag:"",
+  { slug:"shannon-set", url:"harrison-2-and-3-seater-sofa", name:"Harrison 2+3 Seater", price:799, images:1, tag:"",
     desc:"The Harrison two-seater and three-seater set — timeless British craftsmanship, sold as a matching pair." },
-  { slug:"olympia-corner", name:"Olympia Corner", price:749, images:4, tag:"", stool:"add",
+  { slug:"olympia-corner", url:"olympia-corner-sofa", name:"Olympia Corner", price:749, images:4, tag:"", stool:"add",
     desc:"Grand and inviting, the Olympia offers generous seating with an elegant corner configuration." },
-  { slug:"verona-set", name:"Olympia 2+3 Seater", price:799, images:2, tag:"",
+  { slug:"verona-set", url:"olympia-2-and-3-seater-sofa", name:"Olympia 2+3 Seater", price:799, images:2, tag:"",
     desc:"The Olympia two-seater and three-seater set — grand, elegant proportions, sold as a matching pair." },
-  { slug:"lshape", name:"L-Shape", price:849, images:6, tag:"", stool:"add",
+  { slug:"lshape", url:"l-shape-sofa", name:"L-Shape", price:849, images:6, tag:"", stool:"add",
     desc:"A space-smart L-shape sofa that fits neatly into modern rooms without sacrificing comfort or seating." },
-  { slug:"chesterfield", name:"Ambassador", price:1049, images:1, tag:"Iconic", stool:"add", setsFirst:true,
+  { slug:"chesterfield", url:"ambassador-sofa", name:"Ambassador", price:1049, images:1, tag:"Iconic", stool:"add", setsFirst:true,
     tiers:[["1 Seater",399],["2 Seater",549],["3 Seater",649]],
     sets:[["3+2 Seater Set",1049,"Save £149"],["Full Set 3+2+1",1349,"Save £248"]],
     setNote:"Add the matching coffee table to any set for £150 · delivered and placed with your sofa",
     desc:"An icon of British design — deep button tufting, rolled arms and a polished gold base. Sold as a complete set, or piece by piece." },
-  { slug:"borius", name:"Borius", price:799, images:3, tag:"", stool:"add",
+  { slug:"borius", url:"borius-corner-sofa", name:"Borius", price:799, images:3, tag:"", stool:"add",
     desc:"Bold proportions and sumptuous cushioning. The Borius makes a powerful statement without sacrificing everyday comfort." },
-  { slug:"ambassador", name:"Chesterfield", price:1249, images:1, tag:"Premium", stool:"add",
+  { slug:"ambassador", url:"chesterfield-sofa", name:"Chesterfield", price:1249, images:1, tag:"Premium", stool:"add",
     tiers:[["Without table",1249],["With table",1449]],
     desc:"Commanding presence, exceptional comfort. The Chesterfield is built for those who don't compromise on their living space." },
-  { slug:"elaska", name:"Elaska", price:1149, images:6, tag:"Premium", stool:"add",
+  { slug:"elaska", url:"elaska-sofa", name:"Elaska", price:1149, images:6, tag:"Premium", stool:"add",
     desc:"Scandinavian-influenced design with clean geometric lines. The Elaska brings sophisticated minimalism to your home." },
 ];
 
@@ -1312,6 +1333,7 @@ PRODUCTS.forEach((p,idx)=>{
         <span class="p-price-note">${priceNote}</span>
       </div>
       <div class="card-actions">
+        <a class="btn btn-ghost" href="/sofas/${p.url}.html">Full details</a>
         <button class="btn btn-ghost view-btn" data-slug="${p.slug}">View &amp; order</button>
         <a class="btn btn-wa order-wa-btn" data-slug="${p.slug}" data-base="${p.price}" href="${waText(orderMsg)}" target="_blank" rel="noopener">WhatsApp</a>
       </div>
