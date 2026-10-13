@@ -76,7 +76,7 @@ PRODUCTS = [
       setsFirst=True,
       sets=[["3+2 Seater Set",1049,"Save £149"],["Full Set 3+2+1",1349,"Save £248"]],
       tiers=[["1 Seater",399],["2 Seater",549],["3 Seater",649]],
-      setNote="Add the matching coffee table to any set for £150 · delivered and placed with your sofa"),
+      setNote="Any matching table or stool is £179 with a sofa · delivered and placed with it"),
  dict(slug="ambassador",    url="chesterfield-sofa",          name="Chesterfield",         price=1249, cat="chesterfield",
       desc="Commanding presence, exceptional comfort. The Chesterfield is built for those who don't compromise on their living space.",
       long="The full Chesterfield, built the traditional way — deep buttoning across the back and arms, a low rolled silhouette and a frame made to outlast the room it sits in. Available with or without the matching table.",
@@ -134,7 +134,8 @@ CATS = {
 # ----------------------------------------------------------------------------
 FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com">'
  '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
- '<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">')
+ '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Manrope:wght@400;500;600;700&display=swap" media="print" onload="this.media=\'all\'">'
+ '<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Manrope:wght@400;500;600;700&display=swap"></noscript>')
 
 FAVICON = ('<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2048%2048%22%3E%3Crect%20width%3D%2248%22%20height%3D%2248%22%20rx%3D%2211%22%20fill%3D%22%2316121A%22%2F%3E%3Ccircle%20cx%3D%2224%22%20cy%3D%2224%22%20r%3D%2216.5%22%20fill%3D%22none%22%20stroke%3D%22%23C9A86A%22%20stroke-width%3D%221.6%22%2F%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23F2ECE3%22%20stroke-width%3D%222.2%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M15%2023%20q0%20-4%204%20-4%20h10%20q4%200%204%204%20v3%22%2F%3E%3Cpath%20d%3D%22M13%2029%20q0%20-3%203%20-3%20h16%20q3%200%203%203%20v3%20q0%202%20-2%202%20H15%20q-2%200%20-2%20-2%20z%22%2F%3E%3Cpath%20d%3D%22M16%2036%20v2.5%20M32%2036%20v2.5%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E" />')
 
@@ -220,6 +221,7 @@ header{position:sticky;top:0;z-index:50;background:rgba(22,18,26,.86);backdrop-f
 .save{font-size:.66rem;font-weight:700;color:var(--wa);background:rgba(37,211,102,.1);border:1px solid rgba(37,211,102,.25);padding:2px 7px;border-radius:2px;letter-spacing:.04em}
 .divider{font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted-2);margin:16px 0 10px}
 .note{font-size:.76rem;color:var(--muted-2);margin-top:10px;line-height:1.5}
+.builder .addon-wrap{max-height:300px;overflow-y:auto;padding-right:4px}
 .addon{display:flex;align-items:center;gap:13px;border:1px solid var(--line-soft);border-radius:2px;padding:11px 13px;margin-bottom:8px;cursor:pointer;transition:border-color .2s,background .2s}
 .addon:hover{border-color:var(--line)}
 .addon.active{border-color:var(--brass);background:rgba(201,168,106,.07)}
@@ -249,6 +251,7 @@ header{position:sticky;top:0;z-index:50;background:rgba(22,18,26,.86);backdrop-f
 /* content blocks */
 .sec{padding:clamp(52px,7vw,86px) 0;border-top:1px solid var(--line-soft)}
 .sec.alt{background:var(--bg-2)}
+.sec h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.3rem,5vw,3.5rem);font-weight:500;line-height:1.08;margin-bottom:18px}
 .sec h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.9rem,3.6vw,2.6rem);font-weight:500;line-height:1.12;margin-bottom:18px}
 .sec h3{font-family:'Cormorant Garamond',serif;font-size:1.45rem;font-weight:500;color:var(--brass-bright);margin-bottom:10px}
 .sec p{color:var(--muted);margin-bottom:16px;max-width:72ch}
@@ -447,9 +450,14 @@ def shell(title, desc, canonical, body, extra_head="", extra_js=""):
 CAT_NAME = {"corner":"Corner Sofas","ushape":"U-Shape Sofas","lshape":"L-Shape Sofas",
             "sets":"2 & 3 Seater Sofa Sets","chesterfield":"Chesterfield Sofas"}
 
-ADDONS = [("Coffee Table","Matching finish · solid build","images/addons/coffee-table.jpg",180),
-          ("Footstool / Ottoman","Extra comfort · matching fabric","images/addons/fix-seat-stool.jpeg",100),
-          ("Lilly Stool","Matching fabric · plush top","images/addons/liily-stool.jpg",120)]
+ADDONS = [("Coffee Table","Panelled · inset glass top","images/accessories/coffeetable1.jpg",179),
+          ("Ashton Coffee Table","Button tufted · glass top","images/accessories/ashton-coffee-table.jpg",179),
+          ("Lilly Coffee Table","Fluted panels · glass top","images/accessories/lilly-coffee-table.jpg",179),
+          ("Lilly Coffee Table \u2014 Charcoal","Fluted · deep charcoal velvet","images/accessories/lilly-coffee-table-charcoal.jpg",179),
+          ("Chesterfield Coffee Table","Turned legs · brass caps","images/accessories/chesterfield-coffee-table.jpg",179),
+          ("Ashton Stool","Square · chrome feet","images/accessories/ashton-stool.jpg",179),
+          ("Chesterfield Stool","Generous square ottoman","images/accessories/chesterfield-stool.jpg",179),
+          ("Round Ottoman Stool","Round · button tufted","images/accessories/round-ottoman-stool.jpg",179)]
 
 def product_page(p):
     photos = imgs(p["slug"]) or ["1.jpg"]
@@ -494,11 +502,13 @@ def product_page(p):
     else:
         opts += '<div class="bl">Complete the room</div>'
 
+    opts += '<div class="addon-wrap">'
     for nm, sb, img, pr in ADDONS:
         opts += ('<div class="addon" data-price="%d" data-label="%s"><span class="box"></span>'
-                 '<img src="/%s" alt="%s" loading="lazy">'
+                 '<img src="/%s" alt="%s" loading="lazy" decoding="async">'
                  '<span class="t">%s<small>%s</small></span><span class="p">+£%d</span></div>'
                  ) % (pr, nm, img, nm, nm, sb, pr)
+    opts += '</div><div class="note">\u00a3199 on its own \u00b7 \u00a3179 with your sofa</div>'
 
     related = [q for q in PRODUCTS if q["cat"] == p["cat"] and q["slug"] != p["slug"]][:3]
     rel = "".join(
@@ -523,16 +533,17 @@ def product_page(p):
       {"@type":"ListItem","position":1,"name":"Home","item":SITE+"/"},
       {"@type":"ListItem","position":2,"name":catname,"item":"%s/%s" % (SITE,cat["file"])},
       {"@type":"ListItem","position":3,"name":p["name"]+" Sofa","item":url}]}
-    head = ('<meta property="og:image" content="%s" />\n<meta name="twitter:image" content="%s" />\n'
+    head = ('<link rel="preload" as="image" href="%s" fetchpriority="high">\n'
+            '<meta property="og:image" content="%s" />\n<meta name="twitter:image" content="%s" />\n'
             '<script type="application/ld+json">%s</script>\n<script type="application/ld+json">%s</script>'
-            ) % (hero, hero, json.dumps(schema), json.dumps(crumbs))
+            ) % (hero, hero, hero, json.dumps(schema), json.dumps(crumbs))
 
     body = """
 <div class="wrap">
   <div class="crumbs"><a href="/">Home</a><span>/</span><a href="/%s">%s</a><span>/</span>%s</div>
   <div class="pdp">
     <div>
-      <div class="pgal-main"><img id="gmain" src="/images/%s/%s" alt="%s sofa" width="1200" height="900"></div>
+      <div class="pgal-main"><img id="gmain" src="/images/%s/%s" alt="%s sofa" width="1200" height="900" fetchpriority="high" decoding="async"></div>
       <div class="pgal-thumbs" id="gthumbs">%s</div>
     </div>
     <div class="pbuy">
@@ -683,7 +694,7 @@ def category_page(key):
 <section class="sec" style="border-top:0;padding-top:34px">
   <div class="wrap">
     <span class="eyebrow">%s</span>
-    <h2 class="serif" style="font-size:clamp(2.3rem,5vw,3.5rem)">%s</h2>
+    <h1 class="serif">%s</h1>
     <p style="font-size:1.05rem">%s</p>
     <div class="grid" style="margin-top:40px">%s</div>
   </div>
