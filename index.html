@@ -25,13 +25,31 @@
 <meta name="twitter:description" content="Deep-seated luxury sofas brought into your home, assembled and placed by our own team. You settle only once you are happy." />
 <meta name="twitter:image" content="https://theplushhouse.co.uk/images/hero.jpg" />
 
+<!-- Third-party gate: ad / analytics / widget scripts run only after the page
+     has painted — on the first tap, scroll or key, or 2.5s after load, whichever
+     comes first. fbq() and gtag() calls made before then are queued, not lost. -->
+<script>
+(function(w){
+  var q=[],done=false,evs=['pointerdown','touchstart','keydown','scroll','mousemove'];
+  function run(){
+    if(done) return; done=true;
+    evs.forEach(function(e){ w.removeEventListener(e,run,{passive:true}); });
+    for(var i=0;i<q.length;i++){ try{ q[i](); }catch(e){} }
+    q=[];
+  }
+  evs.forEach(function(e){ w.addEventListener(e,run,{passive:true}); });
+  w.addEventListener('load',function(){ setTimeout(run,2500); });
+  w.__tphLater=function(fn){ if(done){ try{ fn(); }catch(e){} } else q.push(fn); };
+})(window);
+</script>
+
 <!-- Meta Pixel -->
 <script>
-!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+!function(f,b,e,v,n){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-document,'script','https://connect.facebook.net/en_US/fbevents.js');
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];
+f.__tphLater(function(){var t=b.createElement(e);t.async=!0;t.src=v;b.head.appendChild(t);});
+}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
 fbq('init', '2826953844350921');
 fbq('consent', 'revoke');
 try{ if(localStorage.getItem('tph_consent')==='granted') fbq('consent','grant'); }catch(e){}
@@ -99,7 +117,7 @@ document.addEventListener('click', function (e) {
   --plum:#3A2A42;
   --ivory:#F2ECE3;
   --muted:#A99FB0;
-  --muted-2:#7C7286;
+  --muted-2:#958BA0;
   --wa:#25D366;
   --shadow:0 30px 60px -25px rgba(0,0,0,.7);
 }
@@ -787,6 +805,7 @@ function addonImgErr(img){
      data-businessunit-id on BOTH blocks below, and put the profile URL
      in both <a href="..."> tags.
   3. Delete the style="display:none" on <section id="reviews"> so it goes live.
+     The Trustpilot script loads automatically once 2 and 3 are done.
   Reviews are written on Trustpilot itself and shown back here — that is the
   only way they count towards the public TrustScore.
 -->
@@ -1751,7 +1770,19 @@ document.querySelectorAll('#faqList .faq-q').forEach(btn=>{
   })();
 </script>
 
-<!-- Trustpilot bootstrap -->
-<script src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async></script>
+<!-- Trustpilot bootstrap — loads only once the reviews section is switched on
+     and a real Business Unit ID is in place. Until then it costs nothing. -->
+<script>
+(function(){
+  var sec=document.getElementById('reviews');
+  var w=sec && sec.querySelector('.trustpilot-widget');
+  if(!sec || sec.style.display==='none' || !w || /PASTE/.test(w.getAttribute('data-businessunit-id')||'')) return;
+  window.__tphLater(function(){
+    var t=document.createElement('script'); t.async=true;
+    t.src='https://widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js';
+    document.head.appendChild(t);
+  });
+})();
+</script>
 </body>
 </html>

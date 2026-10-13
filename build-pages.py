@@ -152,7 +152,7 @@ CSS = """
 :root{--bg:#16121A;--bg-2:#1B1521;--surface:#221C2A;--surface-2:#2A2233;
 --line:rgba(201,168,106,.22);--line-soft:rgba(242,236,227,.08);
 --brass:#C9A86A;--brass-bright:#E0C58C;--plum:#3A2A42;--ivory:#F2ECE3;
---muted:#A99FB0;--muted-2:#7C7286;--wa:#25D366;--shadow:0 30px 60px -25px rgba(0,0,0,.7)}
+--muted:#A99FB0;--muted-2:#958BA0;--wa:#25D366;--shadow:0 30px 60px -25px rgba(0,0,0,.7)}
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--ivory);font-family:'Manrope',sans-serif;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
@@ -188,7 +188,7 @@ header{position:sticky;top:0;z-index:50;background:rgba(22,18,26,.86);backdrop-f
 .nav-links .link{font-size:.88rem;color:var(--muted);letter-spacing:.03em}
 .nav-links .link:hover{color:var(--brass-bright);text-decoration:none}
 .crumbs{padding:22px 0 0;font-size:.8rem;color:var(--muted-2);letter-spacing:.03em}
-.crumbs a{color:var(--muted)}
+.crumbs a{color:var(--muted);text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--line)}
 .crumbs span{margin:0 7px;opacity:.5}
 .eyebrow{display:block;font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:var(--brass);margin-bottom:14px}
 /* product */
@@ -258,7 +258,7 @@ header{position:sticky;top:0;z-index:50;background:rgba(22,18,26,.86);backdrop-f
 .incl{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line-soft);border:1px solid var(--line-soft);margin-top:12px}
 .incl div{background:var(--bg-2);padding:26px 22px}
 .incl .n{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--brass);line-height:1}
-.incl h4{font-size:1rem;font-weight:600;margin:10px 0 6px}
+.incl h3.ih{font-family:'Manrope',sans-serif;font-size:1rem;font-weight:600;color:var(--ivory);margin:10px 0 6px}
 .incl p{font-size:.86rem;margin:0}
 /* grid of sofas */
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
@@ -270,7 +270,7 @@ header{position:sticky;top:0;z-index:50;background:rgba(22,18,26,.86);backdrop-f
 .card-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
 .card:hover .card-img img{transform:scale(1.04)}
 .card-b{padding:22px 22px 24px;display:flex;flex-direction:column;flex:1}
-.card-b h3{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:500;color:var(--ivory);margin-bottom:6px}
+.card-b h3,.card-b h2.ct{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:500;color:var(--ivory);margin-bottom:6px;line-height:1.2}
 .card-b p{color:var(--muted);font-size:.86rem;margin-bottom:16px;flex:1}
 .card-p{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:600;color:var(--brass-bright);line-height:1}
 .card-p small{display:block;font-family:'Manrope',sans-serif;font-size:.68rem;font-weight:500;color:var(--muted-2);letter-spacing:.08em;text-transform:uppercase;margin-top:5px}
@@ -278,7 +278,7 @@ header{position:sticky;top:0;z-index:50;background:rgba(22,18,26,.86);backdrop-f
 footer{border-top:1px solid var(--line-soft);background:var(--bg-2);padding:52px 0 30px}
 .fgrid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:38px;margin-bottom:36px}
 .fgrid p{color:var(--muted);font-size:.88rem;margin-top:14px;max-width:300px}
-.fcol h4{font-size:.72rem;letter-spacing:.26em;text-transform:uppercase;color:var(--brass);margin-bottom:16px}
+.fcol h3.fh{font-size:.72rem;letter-spacing:.26em;text-transform:uppercase;color:var(--brass);margin-bottom:16px}
 .fcol a{display:block;color:var(--muted);font-size:.9rem;margin-bottom:10px}
 .fcol a:hover{color:var(--ivory)}
 .fbot{border-top:1px solid var(--line-soft);padding-top:20px;display:flex;justify-content:space-between;
@@ -289,12 +289,29 @@ footer{border-top:1px solid var(--line-soft);background:var(--bg-2);padding:52px
 """
 
 TRACK = """
+<!-- Third-party gate: ad / analytics / widget scripts run only after the page
+     has painted — on the first tap, scroll or key, or 2.5s after load, whichever
+     comes first. fbq() and gtag() calls made before then are queued, not lost. -->
 <script>
-!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+(function(w){
+  var q=[],done=false,evs=['pointerdown','touchstart','keydown','scroll','mousemove'];
+  function run(){
+    if(done) return; done=true;
+    evs.forEach(function(e){ w.removeEventListener(e,run,{passive:true}); });
+    for(var i=0;i<q.length;i++){ try{ q[i](); }catch(e){} }
+    q=[];
+  }
+  evs.forEach(function(e){ w.addEventListener(e,run,{passive:true}); });
+  w.addEventListener('load',function(){ setTimeout(run,2500); });
+  w.__tphLater=function(fn){ if(done){ try{ fn(); }catch(e){} } else q.push(fn); };
+})(window);
+</script>
+<script>
+!function(f,b,e,v,n){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-document,'script','https://connect.facebook.net/en_US/fbevents.js');
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];
+f.__tphLater(function(){var t=b.createElement(e);t.async=!0;t.src=v;b.head.appendChild(t);});
+}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
 fbq('init', '2826953844350921');
 fbq('consent', 'revoke');
 try{ if(localStorage.getItem('tph_consent')==='granted') fbq('consent','grant'); }catch(e){}
@@ -368,20 +385,20 @@ def footer():
         <a href="/" class="brand"><span class="brand-mark">%s</span><span class="name serif">The Plush <b>House</b></span></a>
         <p>Handcrafted luxury sofas, delivered and assembled in your home across the United Kingdom &mdash; you settle only once it is in place and you are happy.</p>
       </div>
-      <div class="fcol"><h4>Sofas</h4>
+      <div class="fcol"><h3 class="fh">Sofas</h3>
         <a href="/corner-sofas.html">Corner Sofas</a>
         <a href="/u-shape-sofas.html">U-Shape Sofas</a>
         <a href="/l-shape-sofas.html">L-Shape Sofas</a>
         <a href="/2-and-3-seater-sofas.html">2 &amp; 3 Seater Sets</a>
         <a href="/chesterfield-sofas.html">Chesterfield Sofas</a>
       </div>
-      <div class="fcol"><h4>Get in touch</h4>
+      <div class="fcol"><h3 class="fh">Get in touch</h3>
         <a href="https://wa.me/%s">WhatsApp us</a>
         <a href="mailto:%s">%s</a>
         <a href="/#faq">FAQ</a>
         <a href="/#how">How It Works</a>
       </div>
-      <div class="fcol"><h4>Information</h4>
+      <div class="fcol"><h3 class="fh">Information</h3>
         <a href="/delivery.html">Delivery &amp; Assembly</a>
         <a href="/returns.html">Returns &amp; Refunds</a>
         <a href="/privacy.html">Privacy Policy</a>
@@ -396,10 +413,10 @@ def footer():
 </footer>""" % (EMBLEM, WA, EMAIL, EMAIL)
 
 INCLUDED = """<div class="incl">
-  <div><div class="n serif">01</div><h4>We bring it in</h4><p>Our own team carries it into the room you have chosen &mdash; no courier, no kerbside drop.</p></div>
-  <div><div class="n serif">02</div><h4>We assemble it</h4><p>Built in your home, so doorways and stairs are rarely a problem.</p></div>
-  <div><div class="n serif">03</div><h4>We place it</h4><p>Positioned exactly where you want it, and the packaging leaves with us.</p></div>
-  <div><div class="n serif">04</div><h4>You settle</h4><p>In cash, once it is standing there and you are happy. Not a penny before.</p></div>
+  <div><div class="n serif">01</div><h3 class="ih">We bring it in</h3><p>Our own team carries it into the room you have chosen &mdash; no courier, no kerbside drop.</p></div>
+  <div><div class="n serif">02</div><h3 class="ih">We assemble it</h3><p>Built in your home, so doorways and stairs are rarely a problem.</p></div>
+  <div><div class="n serif">03</div><h3 class="ih">We place it</h3><p>Positioned exactly where you want it, and the packaging leaves with us.</p></div>
+  <div><div class="n serif">04</div><h3 class="ih">You settle</h3><p>In cash, once it is standing there and you are happy. Not a penny before.</p></div>
 </div>"""
 
 def imgs(slug):
@@ -533,10 +550,10 @@ def product_page(p):
       {"@type":"ListItem","position":1,"name":"Home","item":SITE+"/"},
       {"@type":"ListItem","position":2,"name":catname,"item":"%s/%s" % (SITE,cat["file"])},
       {"@type":"ListItem","position":3,"name":p["name"]+" Sofa","item":url}]}
-    head = ('<link rel="preload" as="image" href="%s" fetchpriority="high">\n'
+    head = ('<link rel="preload" as="image" href="/images/%s/%s" fetchpriority="high">\n'
             '<meta property="og:image" content="%s" />\n<meta name="twitter:image" content="%s" />\n'
             '<script type="application/ld+json">%s</script>\n<script type="application/ld+json">%s</script>'
-            ) % (hero, hero, hero, json.dumps(schema), json.dumps(crumbs))
+            ) % (p["slug"], photos[0], hero, hero, json.dumps(schema), json.dumps(crumbs))
 
     body = """
 <div class="wrap">
@@ -669,7 +686,7 @@ def category_page(key):
     hero = "%s/images/%s/%s" % (SITE, items[0]["slug"], (imgs(items[0]["slug"]) or ["1.jpg"])[0])
     cards = "".join(
       '<a class="card" href="/sofas/%s.html"><div class="card-img"><img src="/images/%s/%s" alt="%s sofa" loading="lazy"></div>'
-      '<div class="card-b"><h3 class="serif">%s</h3><p>%s</p>'
+      '<div class="card-b"><h2 class="serif ct">%s</h2><p>%s</p>'
       '<div class="card-p serif">£%d<small>Delivered &amp; assembled</small></div></div></a>'
       % (p["url"], p["slug"], (imgs(p["slug"]) or ["1.jpg"])[0], p["name"], p["name"], p["desc"], p["price"]) for p in items)
 

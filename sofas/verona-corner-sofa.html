@@ -17,12 +17,29 @@
 <meta name="twitter:card" content="summary_large_image" />
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Manrope:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Manrope:wght@400;500;600;700&display=swap"></noscript>
 
+<!-- Third-party gate: ad / analytics / widget scripts run only after the page
+     has painted — on the first tap, scroll or key, or 2.5s after load, whichever
+     comes first. fbq() and gtag() calls made before then are queued, not lost. -->
 <script>
-!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+(function(w){
+  var q=[],done=false,evs=['pointerdown','touchstart','keydown','scroll','mousemove'];
+  function run(){
+    if(done) return; done=true;
+    evs.forEach(function(e){ w.removeEventListener(e,run,{passive:true}); });
+    for(var i=0;i<q.length;i++){ try{ q[i](); }catch(e){} }
+    q=[];
+  }
+  evs.forEach(function(e){ w.addEventListener(e,run,{passive:true}); });
+  w.addEventListener('load',function(){ setTimeout(run,2500); });
+  w.__tphLater=function(fn){ if(done){ try{ fn(); }catch(e){} } else q.push(fn); };
+})(window);
+</script>
+<script>
+!function(f,b,e,v,n){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-document,'script','https://connect.facebook.net/en_US/fbevents.js');
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];
+f.__tphLater(function(){var t=b.createElement(e);t.async=!0;t.src=v;b.head.appendChild(t);});
+}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
 fbq('init', '2826953844350921');
 fbq('consent', 'revoke');
 try{ if(localStorage.getItem('tph_consent')==='granted') fbq('consent','grant'); }catch(e){}
@@ -44,7 +61,7 @@ src="https://www.facebook.com/tr?id=2826953844350921&ev=PageView&noscript=1"/></
 :root{--bg:#16121A;--bg-2:#1B1521;--surface:#221C2A;--surface-2:#2A2233;
 --line:rgba(201,168,106,.22);--line-soft:rgba(242,236,227,.08);
 --brass:#C9A86A;--brass-bright:#E0C58C;--plum:#3A2A42;--ivory:#F2ECE3;
---muted:#A99FB0;--muted-2:#7C7286;--wa:#25D366;--shadow:0 30px 60px -25px rgba(0,0,0,.7)}
+--muted:#A99FB0;--muted-2:#958BA0;--wa:#25D366;--shadow:0 30px 60px -25px rgba(0,0,0,.7)}
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--ivory);font-family:'Manrope',sans-serif;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
@@ -80,7 +97,7 @@ header{position:sticky;top:0;z-index:50;background:rgba(22,18,26,.86);backdrop-f
 .nav-links .link{font-size:.88rem;color:var(--muted);letter-spacing:.03em}
 .nav-links .link:hover{color:var(--brass-bright);text-decoration:none}
 .crumbs{padding:22px 0 0;font-size:.8rem;color:var(--muted-2);letter-spacing:.03em}
-.crumbs a{color:var(--muted)}
+.crumbs a{color:var(--muted);text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--line)}
 .crumbs span{margin:0 7px;opacity:.5}
 .eyebrow{display:block;font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:var(--brass);margin-bottom:14px}
 /* product */
@@ -150,7 +167,7 @@ header{position:sticky;top:0;z-index:50;background:rgba(22,18,26,.86);backdrop-f
 .incl{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line-soft);border:1px solid var(--line-soft);margin-top:12px}
 .incl div{background:var(--bg-2);padding:26px 22px}
 .incl .n{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--brass);line-height:1}
-.incl h4{font-size:1rem;font-weight:600;margin:10px 0 6px}
+.incl h3.ih{font-family:'Manrope',sans-serif;font-size:1rem;font-weight:600;color:var(--ivory);margin:10px 0 6px}
 .incl p{font-size:.86rem;margin:0}
 /* grid of sofas */
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
@@ -162,7 +179,7 @@ header{position:sticky;top:0;z-index:50;background:rgba(22,18,26,.86);backdrop-f
 .card-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
 .card:hover .card-img img{transform:scale(1.04)}
 .card-b{padding:22px 22px 24px;display:flex;flex-direction:column;flex:1}
-.card-b h3{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:500;color:var(--ivory);margin-bottom:6px}
+.card-b h3,.card-b h2.ct{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:500;color:var(--ivory);margin-bottom:6px;line-height:1.2}
 .card-b p{color:var(--muted);font-size:.86rem;margin-bottom:16px;flex:1}
 .card-p{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:600;color:var(--brass-bright);line-height:1}
 .card-p small{display:block;font-family:'Manrope',sans-serif;font-size:.68rem;font-weight:500;color:var(--muted-2);letter-spacing:.08em;text-transform:uppercase;margin-top:5px}
@@ -170,7 +187,7 @@ header{position:sticky;top:0;z-index:50;background:rgba(22,18,26,.86);backdrop-f
 footer{border-top:1px solid var(--line-soft);background:var(--bg-2);padding:52px 0 30px}
 .fgrid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:38px;margin-bottom:36px}
 .fgrid p{color:var(--muted);font-size:.88rem;margin-top:14px;max-width:300px}
-.fcol h4{font-size:.72rem;letter-spacing:.26em;text-transform:uppercase;color:var(--brass);margin-bottom:16px}
+.fcol h3.fh{font-size:.72rem;letter-spacing:.26em;text-transform:uppercase;color:var(--brass);margin-bottom:16px}
 .fcol a{display:block;color:var(--muted);font-size:.9rem;margin-bottom:10px}
 .fcol a:hover{color:var(--ivory)}
 .fbot{border-top:1px solid var(--line-soft);padding-top:20px;display:flex;justify-content:space-between;
@@ -179,7 +196,7 @@ footer{border-top:1px solid var(--line-soft);background:var(--bg-2);padding:52px
 @media(max-width:640px){.nav-links .link{display:none}.incl,.grid,.fgrid,.two{grid-template-columns:1fr}
  .ribbon{font-size:.66rem;letter-spacing:.03em}.brand .name{font-size:1.05rem}}
 </style>
-<link rel="preload" as="image" href="https://theplushhouse.co.uk/images/verona-corner/1.jpg" fetchpriority="high">
+<link rel="preload" as="image" href="/images/verona-corner/1.jpg" fetchpriority="high">
 <meta property="og:image" content="https://theplushhouse.co.uk/images/verona-corner/1.jpg" />
 <meta name="twitter:image" content="https://theplushhouse.co.uk/images/verona-corner/1.jpg" />
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Product", "name": "Verona Corner Sofa", "image": ["https://theplushhouse.co.uk/images/verona-corner/1.jpg", "https://theplushhouse.co.uk/images/verona-corner/2.jpg", "https://theplushhouse.co.uk/images/verona-corner/3.jpg", "https://theplushhouse.co.uk/images/verona-corner/4.jpg"], "description": "Italian-inspired proportions with a low, elegant profile and a corner that wraps the room without crowding it. The Verona is our most accessible corner sofa and still built the same way as the rest of the range \u2014 solid frame, deep fill, made to your measurements.", "brand": {"@type": "Brand", "name": "The Plush House"}, "category": "Corner Sofas", "offers": {"@type": "Offer", "url": "https://theplushhouse.co.uk/sofas/verona-corner-sofa.html", "priceCurrency": "GBP", "price": "699", "availability": "https://schema.org/InStock", "itemCondition": "https://schema.org/NewCondition", "priceValidUntil": "2027-12-31", "seller": {"@type": "Organization", "name": "The Plush House"}, "shippingDetails": {"@type": "OfferShippingDetails", "shippingRate": {"@type": "MonetaryAmount", "value": "0", "currency": "GBP"}, "shippingDestination": {"@type": "DefinedRegion", "addressCountry": "GB"}}}}</script>
@@ -248,10 +265,10 @@ footer{border-top:1px solid var(--line-soft);background:var(--bg-2);padding:52px
     <p>Italian-inspired proportions with a low, elegant profile and a corner that wraps the room without crowding it. The Verona is our most accessible corner sofa and still built the same way as the rest of the range — solid frame, deep fill, made to your measurements.</p>
     <h3 class="serif">What happens when it arrives</h3>
     <div class="incl">
-  <div><div class="n serif">01</div><h4>We bring it in</h4><p>Our own team carries it into the room you have chosen &mdash; no courier, no kerbside drop.</p></div>
-  <div><div class="n serif">02</div><h4>We assemble it</h4><p>Built in your home, so doorways and stairs are rarely a problem.</p></div>
-  <div><div class="n serif">03</div><h4>We place it</h4><p>Positioned exactly where you want it, and the packaging leaves with us.</p></div>
-  <div><div class="n serif">04</div><h4>You settle</h4><p>In cash, once it is standing there and you are happy. Not a penny before.</p></div>
+  <div><div class="n serif">01</div><h3 class="ih">We bring it in</h3><p>Our own team carries it into the room you have chosen &mdash; no courier, no kerbside drop.</p></div>
+  <div><div class="n serif">02</div><h3 class="ih">We assemble it</h3><p>Built in your home, so doorways and stairs are rarely a problem.</p></div>
+  <div><div class="n serif">03</div><h3 class="ih">We place it</h3><p>Positioned exactly where you want it, and the packaging leaves with us.</p></div>
+  <div><div class="n serif">04</div><h3 class="ih">You settle</h3><p>In cash, once it is standing there and you are happy. Not a penny before.</p></div>
 </div>
   </div>
 </section>
@@ -265,20 +282,20 @@ footer{border-top:1px solid var(--line-soft);background:var(--bg-2);padding:52px
         <a href="/" class="brand"><span class="brand-mark"><svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="24" cy="24" r="21" stroke="var(--brass)" stroke-width="1.4"/><g stroke="var(--ivory)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 23 q0 -4 4 -4 h12 q4 0 4 4 v3"/><path d="M12 30 q0 -3 3 -3 h18 q3 0 3 3 v3 q0 2 -2 2 H14 q-2 0 -2 -2 z"/><path d="M15 37 v2.5 M33 37 v2.5"/></g></svg></span><span class="name serif">The Plush <b>House</b></span></a>
         <p>Handcrafted luxury sofas, delivered and assembled in your home across the United Kingdom &mdash; you settle only once it is in place and you are happy.</p>
       </div>
-      <div class="fcol"><h4>Sofas</h4>
+      <div class="fcol"><h3 class="fh">Sofas</h3>
         <a href="/corner-sofas.html">Corner Sofas</a>
         <a href="/u-shape-sofas.html">U-Shape Sofas</a>
         <a href="/l-shape-sofas.html">L-Shape Sofas</a>
         <a href="/2-and-3-seater-sofas.html">2 &amp; 3 Seater Sets</a>
         <a href="/chesterfield-sofas.html">Chesterfield Sofas</a>
       </div>
-      <div class="fcol"><h4>Get in touch</h4>
+      <div class="fcol"><h3 class="fh">Get in touch</h3>
         <a href="https://wa.me/447350939623">WhatsApp us</a>
         <a href="mailto:info@theplushhouse.co.uk">info@theplushhouse.co.uk</a>
         <a href="/#faq">FAQ</a>
         <a href="/#how">How It Works</a>
       </div>
-      <div class="fcol"><h4>Information</h4>
+      <div class="fcol"><h3 class="fh">Information</h3>
         <a href="/delivery.html">Delivery &amp; Assembly</a>
         <a href="/returns.html">Returns &amp; Refunds</a>
         <a href="/privacy.html">Privacy Policy</a>
