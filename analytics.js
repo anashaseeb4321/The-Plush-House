@@ -4,9 +4,9 @@
    from inside the pages where the real product name is
    known. This file just loads GA4 + the pageview.
 
-   Measurement ID below is The Plush House's own GA4 stream
-   ("2nd Site"). Kept separate from Sofa Stitch so the two
-   brands' data never mix.
+   Measurement ID = stream "my site" (theplushhouse.co.uk)
+   in the THE PLUSH HOUSE property. Kept separate from
+   Sofa Stitch so the two brands' data never mix.
 
    gtag.js (~150 KB) is fetched only after the page has
    painted — see window.__tphLater in the page head. The
@@ -14,7 +14,7 @@
    when it arrives, so nothing is lost.
    ========================================================= */
 
-const GA_MEASUREMENT_ID = 'G-V18K71T55G';   // The Plush House
+const GA_MEASUREMENT_ID = 'G-GWFCTTV6ED';   // The Plush House — "my site" stream
 
 window.dataLayer = window.dataLayer || [];
 function gtag() { dataLayer.push(arguments); }
