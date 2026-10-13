@@ -132,10 +132,27 @@ CATS = {
 }
 
 # ----------------------------------------------------------------------------
-FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com">'
- '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
- '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Manrope:wght@400;500;600;700&display=swap" media="print" onload="this.media=\'all\'">'
- '<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Manrope:wght@400;500;600;700&display=swap"></noscript>')
+FONTS = """<!-- Brand fonts, self-hosted: no round trip to Google, preloaded so they are
+     usually ready before first paint. -->
+<link rel="preload" href="/fonts/cormorant-garamond.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/cormorant-garamond-italic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/manrope.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:300 700;font-display:swap;src:url(/fonts/cormorant-garamond.woff2) format('woff2')}
+@font-face{font-family:'Cormorant Garamond';font-style:italic;font-weight:300 700;font-display:swap;src:url(/fonts/cormorant-garamond-italic.woff2) format('woff2')}
+@font-face{font-family:'Manrope';font-style:normal;font-weight:200 800;font-display:swap;src:url(/fonts/manrope.woff2) format('woff2')}
+/* Size-matched fallbacks. Whichever system font a device has is scaled to the
+   width of the brand font, so text wraps the same before and after the swap
+   and nothing on the page moves. Ratios measured from the font files. */
+@font-face{font-family:'Cormorant FB1';src:local('Times New Roman'),local('Liberation Serif'),local('Tinos');size-adjust:94.6%}
+@font-face{font-family:'Cormorant FB2';src:local('Noto Serif'),local('DejaVu Serif');size-adjust:78.3%}
+@font-face{font-family:'Cormorant FB1';font-style:italic;src:local('Times New Roman Italic'),local('Liberation Serif Italic'),local('Tinos Italic');size-adjust:94.6%}
+@font-face{font-family:'Cormorant FB2';font-style:italic;src:local('Noto Serif Italic'),local('DejaVu Serif Italic');size-adjust:78.3%}
+@font-face{font-family:'Manrope FB1';src:local('Arial'),local('Helvetica'),local('Liberation Sans'),local('Arimo');size-adjust:94.5%}
+@font-face{font-family:'Manrope FB2';src:local('Roboto');size-adjust:96.5%}
+@font-face{font-family:'Manrope FB3';src:local('DejaVu Sans');size-adjust:86.6%}
+</style>
+"""
 
 FAVICON = ('<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2048%2048%22%3E%3Crect%20width%3D%2248%22%20height%3D%2248%22%20rx%3D%2211%22%20fill%3D%22%2316121A%22%2F%3E%3Ccircle%20cx%3D%2224%22%20cy%3D%2224%22%20r%3D%2216.5%22%20fill%3D%22none%22%20stroke%3D%22%23C9A86A%22%20stroke-width%3D%221.6%22%2F%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23F2ECE3%22%20stroke-width%3D%222.2%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M15%2023%20q0%20-4%204%20-4%20h10%20q4%200%204%204%20v3%22%2F%3E%3Cpath%20d%3D%22M13%2029%20q0%20-3%203%20-3%20h16%20q3%200%203%203%20v3%20q0%202%20-2%202%20H15%20q-2%200%20-2%20-2%20z%22%2F%3E%3Cpath%20d%3D%22M16%2036%20v2.5%20M32%2036%20v2.5%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E" />')
 
@@ -155,16 +172,16 @@ CSS = """
 --muted:#A99FB0;--muted-2:#958BA0;--wa:#25D366;--shadow:0 30px 60px -25px rgba(0,0,0,.7)}
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--ivory);font-family:'Manrope',sans-serif;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
+body{background:var(--bg);color:var(--ivory);font-family:'Manrope','Manrope FB1','Manrope FB2','Manrope FB3',sans-serif;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
 img{max-width:100%;display:block}
 a{color:var(--brass-bright);text-decoration:none}
 a:hover{text-decoration:underline}
-.serif{font-family:'Cormorant Garamond',serif}
+.serif{font-family:'Cormorant Garamond','Cormorant FB1','Cormorant FB2',serif}
 .wrap{width:min(1180px,92vw);margin:0 auto}
 .wrap-n{width:min(860px,92vw);margin:0 auto}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-size:.9rem;font-weight:600;
  letter-spacing:.02em;padding:.95em 1.6em;border-radius:2px;border:1px solid transparent;cursor:pointer;
- font-family:'Manrope',sans-serif;transition:background .22s,border-color .22s,color .22s}
+ font-family:'Manrope','Manrope FB1','Manrope FB2','Manrope FB3',sans-serif;transition:background .22s,border-color .22s,color .22s}
 .btn:hover{text-decoration:none}
 .btn-wa{background:var(--wa);color:#07301A}
 .btn-wa:hover{background:#1FBE5B}
@@ -200,10 +217,10 @@ header{position:sticky;top:0;z-index:50;background:rgba(22,18,26,.86);backdrop-f
  overflow:hidden;cursor:pointer;padding:0;transition:border-color .2s}
 .pgal-thumbs button.active,.pgal-thumbs button:hover{border-color:var(--brass)}
 .pgal-thumbs img{width:100%;height:100%;object-fit:cover}
-.pbuy h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,4.3vw,3.1rem);font-weight:500;line-height:1.08;margin-bottom:10px}
+.pbuy h1{font-family:'Cormorant Garamond','Cormorant FB1','Cormorant FB2',serif;font-size:clamp(2.2rem,4.3vw,3.1rem);font-weight:500;line-height:1.08;margin-bottom:10px}
 .pbuy .sub{color:var(--muted);margin-bottom:22px}
-.pprice{font-family:'Cormorant Garamond',serif;font-size:2.6rem;font-weight:600;color:var(--brass-bright);line-height:1}
-.pprice small{display:block;font-family:'Manrope',sans-serif;font-size:.72rem;font-weight:500;color:var(--muted);
+.pprice{font-family:'Cormorant Garamond','Cormorant FB1','Cormorant FB2',serif;font-size:2.6rem;font-weight:600;color:var(--brass-bright);line-height:1}
+.pprice small{display:block;font-family:'Manrope','Manrope FB1','Manrope FB2','Manrope FB3',sans-serif;font-size:.72rem;font-weight:500;color:var(--muted);
  letter-spacing:.12em;text-transform:uppercase;margin-top:8px}
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0}
 .chips span{font-size:.74rem;color:var(--muted);border:1px solid var(--line-soft);border-radius:2px;padding:6px 11px;letter-spacing:.03em}
@@ -217,7 +234,7 @@ header{position:sticky;top:0;z-index:50;background:rgba(22,18,26,.86);backdrop-f
 .radio{width:15px;height:15px;border-radius:50%;border:1.5px solid var(--muted-2);flex-shrink:0;position:relative}
 .opt.active .radio{border-color:var(--brass)}
 .opt.active .radio::after{content:"";position:absolute;inset:3px;border-radius:50%;background:var(--brass)}
-.opt .p{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--brass-bright)}
+.opt .p{font-family:'Cormorant Garamond','Cormorant FB1','Cormorant FB2',serif;font-size:1.3rem;color:var(--brass-bright)}
 .save{font-size:.66rem;font-weight:700;color:var(--wa);background:rgba(37,211,102,.1);border:1px solid rgba(37,211,102,.25);padding:2px 7px;border-radius:2px;letter-spacing:.04em}
 .divider{font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted-2);margin:16px 0 10px}
 .note{font-size:.76rem;color:var(--muted-2);margin-top:10px;line-height:1.5}
@@ -234,7 +251,7 @@ header{position:sticky;top:0;z-index:50;background:rgba(22,18,26,.86);backdrop-f
 .addon .p{font-size:.9rem;color:var(--brass-bright);font-weight:600}
 .total{display:flex;align-items:baseline;justify-content:space-between;border-top:1px solid var(--line-soft);margin-top:16px;padding-top:16px}
 .total .tl{font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
-.total .tv{font-family:'Cormorant Garamond',serif;font-size:2.1rem;font-weight:600;color:var(--brass-bright)}
+.total .tv{font-family:'Cormorant Garamond','Cormorant FB1','Cormorant FB2',serif;font-size:2.1rem;font-weight:600;color:var(--brass-bright)}
 .pacts{display:flex;flex-direction:column;gap:10px}
 .pacts .btn{width:100%;padding:1.1em 1.6em;font-size:.96rem}
 .cod{font-size:.78rem;color:var(--muted-2);text-align:center;line-height:1.6;margin-top:14px}
@@ -244,21 +261,21 @@ header{position:sticky;top:0;z-index:50;background:rgba(22,18,26,.86);backdrop-f
 .fld{margin-bottom:12px}
 .fld label{display:block;font-size:.75rem;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px}
 .fld input,.fld textarea{width:100%;background:var(--bg);border:1px solid var(--line-soft);border-radius:2px;
- color:var(--ivory);font-family:'Manrope',sans-serif;font-size:.92rem;padding:11px 13px}
+ color:var(--ivory);font-family:'Manrope','Manrope FB1','Manrope FB2','Manrope FB3',sans-serif;font-size:.92rem;padding:11px 13px}
 .fld input:focus,.fld textarea:focus{outline:none;border-color:var(--brass)}
 .fld textarea{min-height:76px;resize:vertical}
 .two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 /* content blocks */
 .sec{padding:clamp(52px,7vw,86px) 0;border-top:1px solid var(--line-soft)}
 .sec.alt{background:var(--bg-2)}
-.sec h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.3rem,5vw,3.5rem);font-weight:500;line-height:1.08;margin-bottom:18px}
-.sec h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.9rem,3.6vw,2.6rem);font-weight:500;line-height:1.12;margin-bottom:18px}
-.sec h3{font-family:'Cormorant Garamond',serif;font-size:1.45rem;font-weight:500;color:var(--brass-bright);margin-bottom:10px}
+.sec h1{font-family:'Cormorant Garamond','Cormorant FB1','Cormorant FB2',serif;font-size:clamp(2.3rem,5vw,3.5rem);font-weight:500;line-height:1.08;margin-bottom:18px}
+.sec h2{font-family:'Cormorant Garamond','Cormorant FB1','Cormorant FB2',serif;font-size:clamp(1.9rem,3.6vw,2.6rem);font-weight:500;line-height:1.12;margin-bottom:18px}
+.sec h3{font-family:'Cormorant Garamond','Cormorant FB1','Cormorant FB2',serif;font-size:1.45rem;font-weight:500;color:var(--brass-bright);margin-bottom:10px}
 .sec p{color:var(--muted);margin-bottom:16px;max-width:72ch}
 .incl{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line-soft);border:1px solid var(--line-soft);margin-top:12px}
 .incl div{background:var(--bg-2);padding:26px 22px}
-.incl .n{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--brass);line-height:1}
-.incl h3.ih{font-family:'Manrope',sans-serif;font-size:1rem;font-weight:600;color:var(--ivory);margin:10px 0 6px}
+.incl .n{font-family:'Cormorant Garamond','Cormorant FB1','Cormorant FB2',serif;font-size:2rem;color:var(--brass);line-height:1}
+.incl h3.ih{font-family:'Manrope','Manrope FB1','Manrope FB2','Manrope FB3',sans-serif;font-size:1rem;font-weight:600;color:var(--ivory);margin:10px 0 6px}
 .incl p{font-size:.86rem;margin:0}
 /* grid of sofas */
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
@@ -270,10 +287,10 @@ header{position:sticky;top:0;z-index:50;background:rgba(22,18,26,.86);backdrop-f
 .card-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
 .card:hover .card-img img{transform:scale(1.04)}
 .card-b{padding:22px 22px 24px;display:flex;flex-direction:column;flex:1}
-.card-b h3,.card-b h2.ct{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:500;color:var(--ivory);margin-bottom:6px;line-height:1.2}
+.card-b h3,.card-b h2.ct{font-family:'Cormorant Garamond','Cormorant FB1','Cormorant FB2',serif;font-size:1.5rem;font-weight:500;color:var(--ivory);margin-bottom:6px;line-height:1.2}
 .card-b p{color:var(--muted);font-size:.86rem;margin-bottom:16px;flex:1}
-.card-p{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:600;color:var(--brass-bright);line-height:1}
-.card-p small{display:block;font-family:'Manrope',sans-serif;font-size:.68rem;font-weight:500;color:var(--muted-2);letter-spacing:.08em;text-transform:uppercase;margin-top:5px}
+.card-p{font-family:'Cormorant Garamond','Cormorant FB1','Cormorant FB2',serif;font-size:1.8rem;font-weight:600;color:var(--brass-bright);line-height:1}
+.card-p small{display:block;font-family:'Manrope','Manrope FB1','Manrope FB2','Manrope FB3',sans-serif;font-size:.68rem;font-weight:500;color:var(--muted-2);letter-spacing:.08em;text-transform:uppercase;margin-top:5px}
 /* footer */
 footer{border-top:1px solid var(--line-soft);background:var(--bg-2);padding:52px 0 30px}
 .fgrid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:38px;margin-bottom:36px}
@@ -339,7 +356,7 @@ CONSENT = """
  #tphConsent p{font-size:13.5px;line-height:1.6;color:var(--muted);margin:0 0 14px}
  #tphConsent a{color:var(--brass-bright);text-decoration:underline}
  #tphConsent .b{display:flex;gap:10px;flex-wrap:wrap}
- #tphConsent button{font-family:inherit;font-size:13.5px;font-weight:600;padding:10px 20px;border-radius:2px;cursor:pointer;border:none}
+ #tphConsent button{line-height:1.2;font-family:inherit;font-size:13.5px;font-weight:600;padding:10px 20px;border-radius:2px;cursor:pointer;border:none}
  #tphConsent .a{background:var(--brass);color:#16121A}
  #tphConsent .r{background:transparent;color:var(--muted);border:1px solid var(--line-soft)}
 </style>
