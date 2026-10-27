@@ -113,6 +113,7 @@ header{position:sticky;top:0;z-index:50;background:rgba(22,18,26,.86);backdrop-f
 .brand-mark svg{width:100%;height:100%}
 .brand .name{font-size:1.22rem}
 .brand .name b{color:var(--brass-bright);font-weight:500}
+.brand .name{white-space:nowrap}
 .nav-links{display:flex;align-items:center;gap:26px}
 .nav-links .link{font-size:.88rem;color:var(--muted);letter-spacing:.03em}
 .nav-links .link:hover{color:var(--brass-bright);text-decoration:none}
@@ -121,7 +122,8 @@ header{position:sticky;top:0;z-index:50;background:rgba(22,18,26,.86);backdrop-f
 .crumbs span{margin:0 7px;opacity:.5}
 .eyebrow{display:block;font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:var(--brass);margin-bottom:14px}
 /* product */
-.pdp{display:grid;grid-template-columns:1.15fr 1fr;gap:54px;padding:34px 0 70px;align-items:start}
+.pdp{display:grid;grid-template-columns:1fr 1fr;gap:48px;padding:34px 0 70px;align-items:start}
+.pdp>div:first-child{position:sticky;top:96px}
 .pgal-main{background:#F2ECE3;border:1px solid var(--line-soft);border-radius:3px;overflow:hidden;aspect-ratio:4/3}
 .pgal-main img{width:100%;height:100%;object-fit:cover}
 .pgal-thumbs{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
@@ -150,17 +152,31 @@ header{position:sticky;top:0;z-index:50;background:rgba(22,18,26,.86);backdrop-f
 .save{font-size:.66rem;font-weight:700;color:var(--wa);background:rgba(37,211,102,.1);border:1px solid rgba(37,211,102,.25);padding:2px 7px;border-radius:2px;letter-spacing:.04em}
 .divider{font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted-2);margin:16px 0 10px}
 .note{font-size:.76rem;color:var(--muted-2);margin-top:10px;line-height:1.5}
-.builder .addon-wrap{max-height:300px;overflow-y:auto;padding-right:4px}
-.addon{display:flex;align-items:center;gap:13px;border:1px solid var(--line-soft);border-radius:2px;padding:11px 13px;margin-bottom:8px;cursor:pointer;transition:border-color .2s,background .2s}
-.addon:hover{border-color:var(--line)}
-.addon.active{border-color:var(--brass);background:rgba(201,168,106,.07)}
-.addon .box{width:15px;height:15px;border:1.5px solid var(--muted-2);border-radius:2px;flex-shrink:0;position:relative}
-.addon.active .box{border-color:var(--brass);background:var(--brass)}
-.addon.active .box::after{content:"";position:absolute;left:4px;top:1px;width:4px;height:8px;border:solid #16121A;border-width:0 2px 2px 0;transform:rotate(45deg)}
-.addon img{width:46px;height:46px;object-fit:cover;border-radius:2px;background:#F2ECE3}
-.addon .t{flex:1;font-size:.88rem}
-.addon .t small{display:block;color:var(--muted-2);font-size:.73rem}
-.addon .p{font-size:.9rem;color:var(--brass-bright);font-weight:600}
+.acc-head{display:flex;flex-direction:column;gap:4px;margin:22px 0 12px}
+.acc-n{font-size:.82rem;color:var(--muted)}
+.acc-n b{color:var(--brass-bright);font-weight:600}
+.addon-wrap{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.addon{position:relative;display:flex;flex-direction:column;border:1px solid var(--line-soft);border-radius:6px;background:var(--bg-2);
+ cursor:pointer;overflow:hidden;user-select:none;transition:border-color .2s,box-shadow .2s,transform .2s}
+.addon:hover{border-color:var(--line);transform:translateY(-2px)}
+.addon:focus-visible{outline:2px solid var(--brass);outline-offset:2px}
+.addon.active{border-color:var(--brass);box-shadow:0 0 0 1px var(--brass)}
+.am{position:relative;aspect-ratio:4/3;background:#F2ECE3}
+.am img{width:100%;height:100%;object-fit:cover;display:block}
+.ck{position:absolute;top:9px;right:9px;width:26px;height:26px;border-radius:50%;background:rgba(22,18,26,.55);border:1.5px solid rgba(242,236,227,.85)}
+.addon.active .ck{background:var(--brass);border-color:var(--brass)}
+.addon.active .ck::after{content:"";position:absolute;left:8px;top:4px;width:6px;height:11px;border:solid #16121A;border-width:0 2px 2px 0;transform:rotate(45deg)}
+.ab{padding:11px 12px 12px;display:flex;flex-direction:column;gap:2px;flex:1}
+.an{font-size:.92rem;font-weight:600;color:var(--ivory);line-height:1.3}
+.ab small{font-size:.76rem;color:var(--muted)}
+.af{display:flex;align-items:center;justify-content:space-between;margin-top:8px}
+.addon .p{font-family:'Cormorant Garamond','Cormorant FB1','Cormorant FB2',serif;font-size:1.4rem;color:var(--brass-bright);font-weight:600;line-height:1}
+.add{font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--brass)}
+.addon.active .add{color:var(--wa)}
+.sws{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.sw{display:inline-flex;align-items:center;gap:6px;font-size:.74rem;color:var(--muted);min-height:32px;padding:4px 11px 4px 6px;border:1px solid var(--line-soft);border-radius:999px;background:transparent;cursor:pointer;font-family:inherit}
+.sw i{width:14px;height:14px;border-radius:50%;border:1px solid rgba(242,236,227,.35)}
+.sw.on{border-color:var(--brass);color:var(--ivory)}
 .total{display:flex;align-items:baseline;justify-content:space-between;border-top:1px solid var(--line-soft);margin-top:16px;padding-top:16px}
 .total .tl{font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
 .total .tv{font-family:'Cormorant Garamond','Cormorant FB1','Cormorant FB2',serif;font-size:2.1rem;font-weight:600;color:var(--brass-bright)}
@@ -212,8 +228,8 @@ footer{border-top:1px solid var(--line-soft);background:var(--bg-2);padding:52px
 .fcol a:hover{color:var(--ivory)}
 .fbot{border-top:1px solid var(--line-soft);padding-top:20px;display:flex;justify-content:space-between;
  flex-wrap:wrap;gap:10px;color:var(--muted-2);font-size:.78rem}
-@media(max-width:980px){.pdp{grid-template-columns:1fr;gap:34px}.incl{grid-template-columns:1fr 1fr}.grid{grid-template-columns:1fr 1fr}.fgrid{grid-template-columns:1fr 1fr}}
-@media(max-width:640px){.nav-links .link{display:none}.incl,.grid,.fgrid,.two{grid-template-columns:1fr}
+@media(max-width:980px){.pdp{grid-template-columns:1fr;gap:34px}.pdp>div:first-child{position:static}.incl{grid-template-columns:1fr 1fr}.grid{grid-template-columns:1fr 1fr}.fgrid{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){header .btn-wa{font-size:.78rem;padding:.7em .95em;gap:6px}.add{display:none}.addon-wrap{gap:10px}.an{font-size:.86rem}.nav-links .link{display:none}.incl,.grid,.fgrid,.two{grid-template-columns:1fr}
  .ribbon{font-size:.66rem;letter-spacing:.03em}.brand .name{font-size:1.05rem}}
 </style>
 <link rel="preload" as="image" href="/images/ashton-lshape/1.jpg" fetchpriority="high">
@@ -243,7 +259,7 @@ footer{border-top:1px solid var(--line-soft);background:var(--bg-2);padding:52px
   <div class="pdp">
     <div>
       <div class="pgal-main"><img id="gmain" src="/images/ashton-lshape/1.jpg" alt="Ashton L-Shape sofa" width="1200" height="900" fetchpriority="high" decoding="async"></div>
-      <div class="pgal-thumbs" id="gthumbs"><button data-f="1.jpg" class="active"><img src="/images/ashton-lshape/1.jpg" alt="Ashton L-Shape sofa, view 1" loading="lazy"></button></div>
+      <div class="pgal-thumbs" id="gthumbs"><button data-f="1.jpg" class="active" aria-label="Show view 1"><img src="/images/ashton-lshape/thumbs/1.jpg" alt="Ashton L-Shape sofa, view 1" width="76" height="76" loading="lazy" decoding="async"></button></div>
     </div>
     <div class="pbuy">
       <span class="eyebrow">L-Shape Sofas</span>
@@ -252,7 +268,7 @@ footer{border-top:1px solid var(--line-soft);background:var(--bg-2);padding:52px
       <div class="pprice"><span id="ptotal">£849</span><small id="plabel">Delivered, assembled and placed in your home</small></div>
       <div class="chips"><span>24&ndash;72hr delivery</span><span>Any fabric or leather</span><span>Made to your measurements</span><span>14-day returns</span></div>
 
-      <div class="builder" id="builder"><div class="bl">Complete the room</div><div class="addon-wrap"><div class="addon" data-price="179" data-label="Coffee Table"><span class="box"></span><img src="/images/accessories/coffeetable1.jpg" alt="Coffee Table" loading="lazy" decoding="async"><span class="t">Coffee Table<small>Panelled · inset glass top</small></span><span class="p">+£179</span></div><div class="addon" data-price="179" data-label="Ashton Coffee Table"><span class="box"></span><img src="/images/accessories/ashton-coffee-table.jpg" alt="Ashton Coffee Table" loading="lazy" decoding="async"><span class="t">Ashton Coffee Table<small>Button tufted · glass top</small></span><span class="p">+£179</span></div><div class="addon" data-price="179" data-label="Lilly Coffee Table"><span class="box"></span><img src="/images/accessories/lilly-coffee-table.jpg" alt="Lilly Coffee Table" loading="lazy" decoding="async"><span class="t">Lilly Coffee Table<small>Fluted panels · glass top</small></span><span class="p">+£179</span></div><div class="addon" data-price="179" data-label="Lilly Coffee Table — Charcoal"><span class="box"></span><img src="/images/accessories/lilly-coffee-table-charcoal.jpg" alt="Lilly Coffee Table — Charcoal" loading="lazy" decoding="async"><span class="t">Lilly Coffee Table — Charcoal<small>Fluted · deep charcoal velvet</small></span><span class="p">+£179</span></div><div class="addon" data-price="179" data-label="Chesterfield Coffee Table"><span class="box"></span><img src="/images/accessories/chesterfield-coffee-table.jpg" alt="Chesterfield Coffee Table" loading="lazy" decoding="async"><span class="t">Chesterfield Coffee Table<small>Turned legs · brass caps</small></span><span class="p">+£179</span></div><div class="addon" data-price="179" data-label="Ashton Stool"><span class="box"></span><img src="/images/accessories/ashton-stool.jpg" alt="Ashton Stool" loading="lazy" decoding="async"><span class="t">Ashton Stool<small>Square · chrome feet</small></span><span class="p">+£179</span></div><div class="addon" data-price="179" data-label="Chesterfield Stool"><span class="box"></span><img src="/images/accessories/chesterfield-stool.jpg" alt="Chesterfield Stool" loading="lazy" decoding="async"><span class="t">Chesterfield Stool<small>Generous square ottoman</small></span><span class="p">+£179</span></div><div class="addon" data-price="179" data-label="Round Ottoman Stool"><span class="box"></span><img src="/images/accessories/round-ottoman-stool.jpg" alt="Round Ottoman Stool" loading="lazy" decoding="async"><span class="t">Round Ottoman Stool<small>Round · button tufted</small></span><span class="p">+£179</span></div></div><div class="note">£199 on its own · £179 with your sofa</div><div class="total"><span class="tl">Your total</span><span class="tv" id="ttl">£849</span></div></div>
+      <div class="builder" id="builder"><div class="bl">Your sofa</div><div class="opt active" data-price="849" data-label="Standard"><span class="l"><span class="radio"></span>Ashton L-Shape</span><span class="p serif">£849</span></div><div class="acc-head"><span class="bl" style="margin:0">Complete the room</span><span class="acc-n">Made in your sofa&rsquo;s fabric &middot; <b>£179 each</b> with your sofa (£199 on its own)</span></div><div class="addon-wrap"><div class="addon" data-price="179" data-label="Coffee Table" role="checkbox" aria-checked="false" tabindex="0"><div class="am"><img src="/images/accessories/coffeetable1.jpg" alt="Coffee Table" loading="lazy" decoding="async"><span class="ck"></span></div><div class="ab"><span class="an">Coffee Table</span><small>Panelled · inset glass top</small><div class="af"><span class="p">+£179</span><span class="add">+ Add</span></div></div></div><div class="addon" data-price="179" data-label="Ashton Coffee Table" role="checkbox" aria-checked="false" tabindex="0"><div class="am"><img src="/images/accessories/ashton-coffee-table.jpg" alt="Ashton Coffee Table" loading="lazy" decoding="async"><span class="ck"></span></div><div class="ab"><span class="an">Ashton Coffee Table</span><small>Button tufted · glass top</small><div class="af"><span class="p">+£179</span><span class="add">+ Add</span></div></div></div><div class="addon" data-price="179" data-label="Lilly Coffee Table" data-colour="Taupe" role="checkbox" aria-checked="false" tabindex="0"><div class="am"><img src="/images/accessories/lilly-coffee-table.jpg" alt="Lilly Coffee Table" loading="lazy" decoding="async"><span class="ck"></span></div><div class="ab"><span class="an">Lilly Coffee Table</span><small>Fluted panels · glass top</small><div class="sws"><button type="button" class="sw on" data-img="/images/accessories/lilly-coffee-table.jpg" data-colour="Taupe"><i style="background:#b6aa9c"></i>Taupe</button><button type="button" class="sw" data-img="/images/accessories/lilly-coffee-table-charcoal.jpg" data-colour="Charcoal"><i style="background:#3a393c"></i>Charcoal</button></div><div class="af"><span class="p">+£179</span><span class="add">+ Add</span></div></div></div><div class="addon" data-price="179" data-label="Chesterfield Coffee Table" role="checkbox" aria-checked="false" tabindex="0"><div class="am"><img src="/images/accessories/chesterfield-coffee-table.jpg" alt="Chesterfield Coffee Table" loading="lazy" decoding="async"><span class="ck"></span></div><div class="ab"><span class="an">Chesterfield Coffee Table</span><small>Turned legs · brass caps</small><div class="af"><span class="p">+£179</span><span class="add">+ Add</span></div></div></div><div class="addon" data-price="179" data-label="Ashton Stool" role="checkbox" aria-checked="false" tabindex="0"><div class="am"><img src="/images/accessories/ashton-stool.jpg" alt="Ashton Stool" loading="lazy" decoding="async"><span class="ck"></span></div><div class="ab"><span class="an">Ashton Stool</span><small>Square · chrome feet</small><div class="af"><span class="p">+£179</span><span class="add">+ Add</span></div></div></div><div class="addon" data-price="179" data-label="Chesterfield Stool" role="checkbox" aria-checked="false" tabindex="0"><div class="am"><img src="/images/accessories/chesterfield-stool.jpg" alt="Chesterfield Stool" loading="lazy" decoding="async"><span class="ck"></span></div><div class="ab"><span class="an">Chesterfield Stool</span><small>Generous square ottoman</small><div class="af"><span class="p">+£179</span><span class="add">+ Add</span></div></div></div><div class="addon" data-price="179" data-label="Round Ottoman Stool" role="checkbox" aria-checked="false" tabindex="0"><div class="am"><img src="/images/accessories/round-ottoman-stool.jpg" alt="Round Ottoman Stool" loading="lazy" decoding="async"><span class="ck"></span></div><div class="ab"><span class="an">Round Ottoman Stool</span><small>Round · button tufted</small><div class="af"><span class="p">+£179</span><span class="add">+ Add</span></div></div></div></div><div class="total"><span class="tl">Your total</span><span class="tv" id="ttl">£849</span></div></div>
 
       <form class="oform" id="oform">
         <div class="bl">Your details</div>
@@ -380,7 +396,7 @@ footer{border-top:1px solid var(--line-soft);background:var(--bg-2);padding:52px
     document.getElementById('ttl').textContent='£'+t;
     document.getElementById('ptotal').textContent='£'+t;
     document.getElementById('plabel').textContent=label+' · delivered, assembled and placed in your home';
-    var extras=[]; box.querySelectorAll('.addon.active').forEach(function(a){ extras.push(a.dataset.label+' (+£'+a.dataset.price+')'); });
+    var extras=[]; box.querySelectorAll('.addon.active').forEach(function(a){ extras.push(a.dataset.label+(a.dataset.colour?' ('+a.dataset.colour+')':'')+' (+£'+a.dataset.price+')'); });
     var msg='Hi The Plush House! I would like to order the *'+PRODUCT+'* ('+label+' — £'+base+').';
     if(extras.length) msg+='\nAdding: '+extras.join(', ');
     msg+='\nTotal: £'+t;
@@ -391,8 +407,20 @@ footer{border-top:1px solid var(--line-soft);background:var(--bg-2);padding:52px
     var o=e.target.closest('.opt');
     if(o){ box.querySelectorAll('.opt').forEach(function(x){x.classList.remove('active')}); o.classList.add('active');
            base=parseInt(o.dataset.price,10); label=o.dataset.label; paint(); return; }
+    var sw=e.target.closest('.sw');
+    if(sw){
+      var tile=sw.closest('.addon');
+      tile.querySelectorAll('.sw').forEach(function(x){x.classList.toggle('on',x===sw)});
+      tile.querySelector('.am img').src=sw.dataset.img; tile.dataset.colour=sw.dataset.colour;
+      setOn(tile,true); paint(); return;
+    }
     var a=e.target.closest('.addon');
-    if(a){ a.classList.toggle('active'); paint(); }
+    if(a){ setOn(a,!a.classList.contains('active')); paint(); }
+  });
+  function setOn(t,on){ t.classList.toggle('active',on); t.setAttribute('aria-checked',on); t.querySelector('.add').textContent=on?'✓ Added':'+ Add'; }
+  box.addEventListener('keydown',function(e){
+    var t=e.target.closest('.addon');
+    if(t && e.target===t && (e.key===' '||e.key==='Enter')){ e.preventDefault(); setOn(t,!t.classList.contains('active')); paint(); }
   });
   paint();
   var form=document.getElementById('oform');

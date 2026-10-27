@@ -63,9 +63,9 @@ PRODUCTS = [
  dict(slug="verona-set",    url="olympia-2-and-3-seater-sofa",name="Olympia 2+3 Seater",   price=799,  cat="sets",
       desc="The Olympia two-seater and three-seater set — grand, elegant proportions, sold as a matching pair.",
       long="The Olympia proportions split across a two-seater and a three-seater. Generous seats, an elegant profile and the flexibility to lay out a room however you like."),
- dict(slug="elaska",        url="elaska-sofa",                name="Elaska",               price=1149, cat="sets",
-      desc="Scandinavian-influenced design with clean geometric lines. The Elaska brings sophisticated minimalism to your home.",
-      long="Deep button tufting on the arms and base, bolster cushions and a low, geometric frame. The Elaska is the quietest piece in the range and the one that reads most expensive in a plain room."),
+ dict(slug="elaska",        url="elaska-sofa",                name="Elaska 2+3 Seater",    price=899,  cat="sets",
+      desc="Deep button-tufted arms and base, bolster cushions and a low, clean frame — a two-seater and three-seater sold as a matching pair.",
+      long="Deep button tufting on the arms and base, bolster cushions and a low, geometric frame, supplied as a matching two-seater and three-seater. The Elaska is the quietest set in the range and the one that reads most expensive in a plain room."),
 
  dict(slug="ashton-set",    url="italian-chesterfield-sofa",  name="Italian Chesterfield", price=949,  cat="chesterfield",
       desc="A deep-buttoned Italian take on the Chesterfield — two-seater and three-seater, sold as a matching pair.",
@@ -201,6 +201,7 @@ header{position:sticky;top:0;z-index:50;background:rgba(22,18,26,.86);backdrop-f
 .brand-mark svg{width:100%;height:100%}
 .brand .name{font-size:1.22rem}
 .brand .name b{color:var(--brass-bright);font-weight:500}
+.brand .name{white-space:nowrap}
 .nav-links{display:flex;align-items:center;gap:26px}
 .nav-links .link{font-size:.88rem;color:var(--muted);letter-spacing:.03em}
 .nav-links .link:hover{color:var(--brass-bright);text-decoration:none}
@@ -209,7 +210,8 @@ header{position:sticky;top:0;z-index:50;background:rgba(22,18,26,.86);backdrop-f
 .crumbs span{margin:0 7px;opacity:.5}
 .eyebrow{display:block;font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:var(--brass);margin-bottom:14px}
 /* product */
-.pdp{display:grid;grid-template-columns:1.15fr 1fr;gap:54px;padding:34px 0 70px;align-items:start}
+.pdp{display:grid;grid-template-columns:1fr 1fr;gap:48px;padding:34px 0 70px;align-items:start}
+.pdp>div:first-child{position:sticky;top:96px}
 .pgal-main{background:#F2ECE3;border:1px solid var(--line-soft);border-radius:3px;overflow:hidden;aspect-ratio:4/3}
 .pgal-main img{width:100%;height:100%;object-fit:cover}
 .pgal-thumbs{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
@@ -238,17 +240,31 @@ header{position:sticky;top:0;z-index:50;background:rgba(22,18,26,.86);backdrop-f
 .save{font-size:.66rem;font-weight:700;color:var(--wa);background:rgba(37,211,102,.1);border:1px solid rgba(37,211,102,.25);padding:2px 7px;border-radius:2px;letter-spacing:.04em}
 .divider{font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted-2);margin:16px 0 10px}
 .note{font-size:.76rem;color:var(--muted-2);margin-top:10px;line-height:1.5}
-.builder .addon-wrap{max-height:300px;overflow-y:auto;padding-right:4px}
-.addon{display:flex;align-items:center;gap:13px;border:1px solid var(--line-soft);border-radius:2px;padding:11px 13px;margin-bottom:8px;cursor:pointer;transition:border-color .2s,background .2s}
-.addon:hover{border-color:var(--line)}
-.addon.active{border-color:var(--brass);background:rgba(201,168,106,.07)}
-.addon .box{width:15px;height:15px;border:1.5px solid var(--muted-2);border-radius:2px;flex-shrink:0;position:relative}
-.addon.active .box{border-color:var(--brass);background:var(--brass)}
-.addon.active .box::after{content:"";position:absolute;left:4px;top:1px;width:4px;height:8px;border:solid #16121A;border-width:0 2px 2px 0;transform:rotate(45deg)}
-.addon img{width:46px;height:46px;object-fit:cover;border-radius:2px;background:#F2ECE3}
-.addon .t{flex:1;font-size:.88rem}
-.addon .t small{display:block;color:var(--muted-2);font-size:.73rem}
-.addon .p{font-size:.9rem;color:var(--brass-bright);font-weight:600}
+.acc-head{display:flex;flex-direction:column;gap:4px;margin:22px 0 12px}
+.acc-n{font-size:.82rem;color:var(--muted)}
+.acc-n b{color:var(--brass-bright);font-weight:600}
+.addon-wrap{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.addon{position:relative;display:flex;flex-direction:column;border:1px solid var(--line-soft);border-radius:6px;background:var(--bg-2);
+ cursor:pointer;overflow:hidden;user-select:none;transition:border-color .2s,box-shadow .2s,transform .2s}
+.addon:hover{border-color:var(--line);transform:translateY(-2px)}
+.addon:focus-visible{outline:2px solid var(--brass);outline-offset:2px}
+.addon.active{border-color:var(--brass);box-shadow:0 0 0 1px var(--brass)}
+.am{position:relative;aspect-ratio:4/3;background:#F2ECE3}
+.am img{width:100%;height:100%;object-fit:cover;display:block}
+.ck{position:absolute;top:9px;right:9px;width:26px;height:26px;border-radius:50%;background:rgba(22,18,26,.55);border:1.5px solid rgba(242,236,227,.85)}
+.addon.active .ck{background:var(--brass);border-color:var(--brass)}
+.addon.active .ck::after{content:"";position:absolute;left:8px;top:4px;width:6px;height:11px;border:solid #16121A;border-width:0 2px 2px 0;transform:rotate(45deg)}
+.ab{padding:11px 12px 12px;display:flex;flex-direction:column;gap:2px;flex:1}
+.an{font-size:.92rem;font-weight:600;color:var(--ivory);line-height:1.3}
+.ab small{font-size:.76rem;color:var(--muted)}
+.af{display:flex;align-items:center;justify-content:space-between;margin-top:8px}
+.addon .p{font-family:'Cormorant Garamond','Cormorant FB1','Cormorant FB2',serif;font-size:1.4rem;color:var(--brass-bright);font-weight:600;line-height:1}
+.add{font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--brass)}
+.addon.active .add{color:var(--wa)}
+.sws{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.sw{display:inline-flex;align-items:center;gap:6px;font-size:.74rem;color:var(--muted);min-height:32px;padding:4px 11px 4px 6px;border:1px solid var(--line-soft);border-radius:999px;background:transparent;cursor:pointer;font-family:inherit}
+.sw i{width:14px;height:14px;border-radius:50%;border:1px solid rgba(242,236,227,.35)}
+.sw.on{border-color:var(--brass);color:var(--ivory)}
 .total{display:flex;align-items:baseline;justify-content:space-between;border-top:1px solid var(--line-soft);margin-top:16px;padding-top:16px}
 .total .tl{font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
 .total .tv{font-family:'Cormorant Garamond','Cormorant FB1','Cormorant FB2',serif;font-size:2.1rem;font-weight:600;color:var(--brass-bright)}
@@ -300,8 +316,8 @@ footer{border-top:1px solid var(--line-soft);background:var(--bg-2);padding:52px
 .fcol a:hover{color:var(--ivory)}
 .fbot{border-top:1px solid var(--line-soft);padding-top:20px;display:flex;justify-content:space-between;
  flex-wrap:wrap;gap:10px;color:var(--muted-2);font-size:.78rem}
-@media(max-width:980px){.pdp{grid-template-columns:1fr;gap:34px}.incl{grid-template-columns:1fr 1fr}.grid{grid-template-columns:1fr 1fr}.fgrid{grid-template-columns:1fr 1fr}}
-@media(max-width:640px){.nav-links .link{display:none}.incl,.grid,.fgrid,.two{grid-template-columns:1fr}
+@media(max-width:980px){.pdp{grid-template-columns:1fr;gap:34px}.pdp>div:first-child{position:static}.incl{grid-template-columns:1fr 1fr}.grid{grid-template-columns:1fr 1fr}.fgrid{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){header .btn-wa{font-size:.78rem;padding:.7em .95em;gap:6px}.add{display:none}.addon-wrap{gap:10px}.an{font-size:.86rem}.nav-links .link{display:none}.incl,.grid,.fgrid,.two{grid-template-columns:1fr}
  .ribbon{font-size:.66rem;letter-spacing:.03em}.brand .name{font-size:1.05rem}}
 """
 
@@ -436,6 +452,22 @@ INCLUDED = """<div class="incl">
   <div><div class="n serif">04</div><h3 class="ih">You settle</h3><p>In cash, once it is standing there and you are happy. Not a penny before.</p></div>
 </div>"""
 
+def thumb(slug, f):
+    """160px thumbnail for the gallery strip (the strip used to load full-size photos)."""
+    src = os.path.join("images", slug, f)
+    dst_dir = os.path.join("images", slug, "thumbs"); dst = os.path.join(dst_dir, f)
+    if not os.path.exists(dst) or os.path.getmtime(dst) < os.path.getmtime(src):
+        try:
+            from PIL import Image
+            os.makedirs(dst_dir, exist_ok=True)
+            im = Image.open(src); im.load()
+            if im.mode != "RGB": im = im.convert("RGB")
+            im.thumbnail((240, 240))
+            im.save(dst, "JPEG", quality=78, optimize=True, progressive=True)
+        except Exception:
+            return "/images/%s/%s" % (slug, f)      # no Pillow: fall back to the full photo
+    return "/images/%s/thumbs/%s" % (slug, f)
+
 def imgs(slug):
     """Actual numbered photos in the folder, in order. Numbering can have gaps."""
     d = os.path.join("images", slug)
@@ -484,14 +516,18 @@ def shell(title, desc, canonical, body, extra_head="", extra_js=""):
 CAT_NAME = {"corner":"Corner Sofas","ushape":"U-Shape Sofas","lshape":"L-Shape Sofas",
             "sets":"2 & 3 Seater Sofa Sets","chesterfield":"Chesterfield Sofas"}
 
-ADDONS = [("Coffee Table","Panelled · inset glass top","images/accessories/coffeetable1.jpg",179),
-          ("Ashton Coffee Table","Button tufted · glass top","images/accessories/ashton-coffee-table.jpg",179),
-          ("Lilly Coffee Table","Fluted panels · glass top","images/accessories/lilly-coffee-table.jpg",179),
-          ("Lilly Coffee Table \u2014 Charcoal","Fluted · deep charcoal velvet","images/accessories/lilly-coffee-table-charcoal.jpg",179),
-          ("Chesterfield Coffee Table","Turned legs · brass caps","images/accessories/chesterfield-coffee-table.jpg",179),
-          ("Ashton Stool","Square · chrome feet","images/accessories/ashton-stool.jpg",179),
-          ("Chesterfield Stool","Generous square ottoman","images/accessories/chesterfield-stool.jpg",179),
-          ("Round Ottoman Stool","Round · button tufted","images/accessories/round-ottoman-stool.jpg",179)]
+ADDONS = [
+ dict(name="Coffee Table",              sub="Panelled · inset glass top", img="images/accessories/coffeetable1.jpg"),
+ dict(name="Ashton Coffee Table",       sub="Button tufted · glass top",  img="images/accessories/ashton-coffee-table.jpg"),
+ dict(name="Lilly Coffee Table",        sub="Fluted panels · glass top",
+      colours=[("Taupe","#b6aa9c","images/accessories/lilly-coffee-table.jpg"),
+               ("Charcoal","#3a393c","images/accessories/lilly-coffee-table-charcoal.jpg")]),
+ dict(name="Chesterfield Coffee Table", sub="Turned legs · brass caps",   img="images/accessories/chesterfield-coffee-table.jpg"),
+ dict(name="Ashton Stool",              sub="Square · chrome feet",       img="images/accessories/ashton-stool.jpg"),
+ dict(name="Chesterfield Stool",        sub="Generous square ottoman",        img="images/accessories/chesterfield-stool.jpg"),
+ dict(name="Round Ottoman Stool",       sub="Round · button tufted",      img="images/accessories/round-ottoman-stool.jpg"),
+]
+ACC_WITH_SOFA = 179
 
 def product_page(p):
     photos = imgs(p["slug"]) or ["1.jpg"]
@@ -505,8 +541,8 @@ def product_page(p):
              ) % (p["desc"].split(".")[0] + ".", p["price"])
 
     thumbs = "".join(
-      '<button data-f="%s"%s><img src="/images/%s/%s" alt="%s sofa, view %d" loading="lazy"></button>'
-      % (f, ' class="active"' if i==0 else '', p["slug"], f, p["name"], i+1)
+      '<button data-f="%s"%s aria-label="Show view %d"><img src="%s" alt="%s sofa, view %d" width="76" height="76" loading="lazy" decoding="async"></button>'
+      % (f, ' class="active"' if i==0 else '', i+1, thumb(p["slug"], f), p["name"], i+1)
       for i, f in enumerate(photos))
 
     # option list
@@ -532,17 +568,28 @@ def product_page(p):
                 opts += '<div class="opt" data-price="%d" data-label="%s"><span class="l"><span class="radio"></span>%s%s</span><span class="p serif">£%d</span></div>' % (pr, lbl, lbl, save, pr)
         if p.get("setNote"):
             opts += '<div class="note">%s</div>' % p["setNote"]
-        opts += '<div class="divider">Complete the room</div>'
     else:
-        opts += '<div class="bl">Complete the room</div>'
+        opts += '<div class="bl">Your sofa</div>'
+        opts += '<div class="opt active" data-price="%d" data-label="%s"><span class="l"><span class="radio"></span>%s</span><span class="p serif">£%d</span></div>' % (p["price"], "Standard", p["name"], p["price"])
 
-    opts += '<div class="addon-wrap">'
-    for nm, sb, img, pr in ADDONS:
-        opts += ('<div class="addon" data-price="%d" data-label="%s"><span class="box"></span>'
-                 '<img src="/%s" alt="%s" loading="lazy" decoding="async">'
-                 '<span class="t">%s<small>%s</small></span><span class="p">+£%d</span></div>'
-                 ) % (pr, nm, img, nm, nm, sb, pr)
-    opts += '</div><div class="note">\u00a3199 on its own \u00b7 \u00a3179 with your sofa</div>'
+    opts += ('<div class="acc-head"><span class="bl" style="margin:0">Complete the room</span>'
+             '<span class="acc-n">Made in your sofa&rsquo;s fabric &middot; <b>£%d each</b> with your sofa (£199 on its own)</span></div>'
+             '<div class="addon-wrap">') % ACC_WITH_SOFA
+    for a in ADDONS:
+        cols = a.get("colours")
+        img = cols[0][2] if cols else a["img"]
+        sw = ""
+        if cols:
+            sw = '<div class="sws">' + "".join(
+                '<button type="button" class="sw%s" data-img="/%s" data-colour="%s"><i style="background:%s"></i>%s</button>'
+                % (" on" if i == 0 else "", c[2], c[0], c[1], c[0]) for i, c in enumerate(cols)) + '</div>'
+        opts += ('<div class="addon" data-price="%d" data-label="%s"%s role="checkbox" aria-checked="false" tabindex="0">'
+                 '<div class="am"><img src="/%s" alt="%s" loading="lazy" decoding="async"><span class="ck"></span></div>'
+                 '<div class="ab"><span class="an">%s</span><small>%s</small>%s'
+                 '<div class="af"><span class="p">+£%d</span><span class="add">+ Add</span></div></div></div>'
+                 ) % (ACC_WITH_SOFA, a["name"], (' data-colour="%s"' % cols[0][0]) if cols else "",
+                      img, a["name"], a["name"], a["sub"], sw, ACC_WITH_SOFA)
+    opts += '</div>'
 
     related = [q for q in PRODUCTS if q["cat"] == p["cat"] and q["slug"] != p["slug"]][:3]
     rel = "".join(
@@ -653,7 +700,7 @@ def product_page(p):
     document.getElementById('ttl').textContent='£'+t;
     document.getElementById('ptotal').textContent='£'+t;
     document.getElementById('plabel').textContent=label+' · delivered, assembled and placed in your home';
-    var extras=[]; box.querySelectorAll('.addon.active').forEach(function(a){ extras.push(a.dataset.label+' (+£'+a.dataset.price+')'); });
+    var extras=[]; box.querySelectorAll('.addon.active').forEach(function(a){ extras.push(a.dataset.label+(a.dataset.colour?' ('+a.dataset.colour+')':'')+' (+£'+a.dataset.price+')'); });
     var msg='Hi The Plush House! I would like to order the *'+PRODUCT+'* ('+label+' — £'+base+').';
     if(extras.length) msg+='\\nAdding: '+extras.join(', ');
     msg+='\\nTotal: £'+t;
@@ -664,8 +711,20 @@ def product_page(p):
     var o=e.target.closest('.opt');
     if(o){ box.querySelectorAll('.opt').forEach(function(x){x.classList.remove('active')}); o.classList.add('active');
            base=parseInt(o.dataset.price,10); label=o.dataset.label; paint(); return; }
+    var sw=e.target.closest('.sw');
+    if(sw){
+      var tile=sw.closest('.addon');
+      tile.querySelectorAll('.sw').forEach(function(x){x.classList.toggle('on',x===sw)});
+      tile.querySelector('.am img').src=sw.dataset.img; tile.dataset.colour=sw.dataset.colour;
+      setOn(tile,true); paint(); return;
+    }
     var a=e.target.closest('.addon');
-    if(a){ a.classList.toggle('active'); paint(); }
+    if(a){ setOn(a,!a.classList.contains('active')); paint(); }
+  });
+  function setOn(t,on){ t.classList.toggle('active',on); t.setAttribute('aria-checked',on); t.querySelector('.add').textContent=on?'\u2713 Added':'+ Add'; }
+  box.addEventListener('keydown',function(e){
+    var t=e.target.closest('.addon');
+    if(t && e.target===t && (e.key===' '||e.key==='Enter')){ e.preventDefault(); setOn(t,!t.classList.contains('active')); paint(); }
   });
   paint();
   var form=document.getElementById('oform');

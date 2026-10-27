@@ -113,6 +113,7 @@ header{position:sticky;top:0;z-index:50;background:rgba(22,18,26,.86);backdrop-f
 .brand-mark svg{width:100%;height:100%}
 .brand .name{font-size:1.22rem}
 .brand .name b{color:var(--brass-bright);font-weight:500}
+.brand .name{white-space:nowrap}
 .nav-links{display:flex;align-items:center;gap:26px}
 .nav-links .link{font-size:.88rem;color:var(--muted);letter-spacing:.03em}
 .nav-links .link:hover{color:var(--brass-bright);text-decoration:none}
@@ -121,7 +122,8 @@ header{position:sticky;top:0;z-index:50;background:rgba(22,18,26,.86);backdrop-f
 .crumbs span{margin:0 7px;opacity:.5}
 .eyebrow{display:block;font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:var(--brass);margin-bottom:14px}
 /* product */
-.pdp{display:grid;grid-template-columns:1.15fr 1fr;gap:54px;padding:34px 0 70px;align-items:start}
+.pdp{display:grid;grid-template-columns:1fr 1fr;gap:48px;padding:34px 0 70px;align-items:start}
+.pdp>div:first-child{position:sticky;top:96px}
 .pgal-main{background:#F2ECE3;border:1px solid var(--line-soft);border-radius:3px;overflow:hidden;aspect-ratio:4/3}
 .pgal-main img{width:100%;height:100%;object-fit:cover}
 .pgal-thumbs{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
@@ -150,17 +152,31 @@ header{position:sticky;top:0;z-index:50;background:rgba(22,18,26,.86);backdrop-f
 .save{font-size:.66rem;font-weight:700;color:var(--wa);background:rgba(37,211,102,.1);border:1px solid rgba(37,211,102,.25);padding:2px 7px;border-radius:2px;letter-spacing:.04em}
 .divider{font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted-2);margin:16px 0 10px}
 .note{font-size:.76rem;color:var(--muted-2);margin-top:10px;line-height:1.5}
-.builder .addon-wrap{max-height:300px;overflow-y:auto;padding-right:4px}
-.addon{display:flex;align-items:center;gap:13px;border:1px solid var(--line-soft);border-radius:2px;padding:11px 13px;margin-bottom:8px;cursor:pointer;transition:border-color .2s,background .2s}
-.addon:hover{border-color:var(--line)}
-.addon.active{border-color:var(--brass);background:rgba(201,168,106,.07)}
-.addon .box{width:15px;height:15px;border:1.5px solid var(--muted-2);border-radius:2px;flex-shrink:0;position:relative}
-.addon.active .box{border-color:var(--brass);background:var(--brass)}
-.addon.active .box::after{content:"";position:absolute;left:4px;top:1px;width:4px;height:8px;border:solid #16121A;border-width:0 2px 2px 0;transform:rotate(45deg)}
-.addon img{width:46px;height:46px;object-fit:cover;border-radius:2px;background:#F2ECE3}
-.addon .t{flex:1;font-size:.88rem}
-.addon .t small{display:block;color:var(--muted-2);font-size:.73rem}
-.addon .p{font-size:.9rem;color:var(--brass-bright);font-weight:600}
+.acc-head{display:flex;flex-direction:column;gap:4px;margin:22px 0 12px}
+.acc-n{font-size:.82rem;color:var(--muted)}
+.acc-n b{color:var(--brass-bright);font-weight:600}
+.addon-wrap{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.addon{position:relative;display:flex;flex-direction:column;border:1px solid var(--line-soft);border-radius:6px;background:var(--bg-2);
+ cursor:pointer;overflow:hidden;user-select:none;transition:border-color .2s,box-shadow .2s,transform .2s}
+.addon:hover{border-color:var(--line);transform:translateY(-2px)}
+.addon:focus-visible{outline:2px solid var(--brass);outline-offset:2px}
+.addon.active{border-color:var(--brass);box-shadow:0 0 0 1px var(--brass)}
+.am{position:relative;aspect-ratio:4/3;background:#F2ECE3}
+.am img{width:100%;height:100%;object-fit:cover;display:block}
+.ck{position:absolute;top:9px;right:9px;width:26px;height:26px;border-radius:50%;background:rgba(22,18,26,.55);border:1.5px solid rgba(242,236,227,.85)}
+.addon.active .ck{background:var(--brass);border-color:var(--brass)}
+.addon.active .ck::after{content:"";position:absolute;left:8px;top:4px;width:6px;height:11px;border:solid #16121A;border-width:0 2px 2px 0;transform:rotate(45deg)}
+.ab{padding:11px 12px 12px;display:flex;flex-direction:column;gap:2px;flex:1}
+.an{font-size:.92rem;font-weight:600;color:var(--ivory);line-height:1.3}
+.ab small{font-size:.76rem;color:var(--muted)}
+.af{display:flex;align-items:center;justify-content:space-between;margin-top:8px}
+.addon .p{font-family:'Cormorant Garamond','Cormorant FB1','Cormorant FB2',serif;font-size:1.4rem;color:var(--brass-bright);font-weight:600;line-height:1}
+.add{font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--brass)}
+.addon.active .add{color:var(--wa)}
+.sws{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.sw{display:inline-flex;align-items:center;gap:6px;font-size:.74rem;color:var(--muted);min-height:32px;padding:4px 11px 4px 6px;border:1px solid var(--line-soft);border-radius:999px;background:transparent;cursor:pointer;font-family:inherit}
+.sw i{width:14px;height:14px;border-radius:50%;border:1px solid rgba(242,236,227,.35)}
+.sw.on{border-color:var(--brass);color:var(--ivory)}
 .total{display:flex;align-items:baseline;justify-content:space-between;border-top:1px solid var(--line-soft);margin-top:16px;padding-top:16px}
 .total .tl{font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
 .total .tv{font-family:'Cormorant Garamond','Cormorant FB1','Cormorant FB2',serif;font-size:2.1rem;font-weight:600;color:var(--brass-bright)}
@@ -212,13 +228,13 @@ footer{border-top:1px solid var(--line-soft);background:var(--bg-2);padding:52px
 .fcol a:hover{color:var(--ivory)}
 .fbot{border-top:1px solid var(--line-soft);padding-top:20px;display:flex;justify-content:space-between;
  flex-wrap:wrap;gap:10px;color:var(--muted-2);font-size:.78rem}
-@media(max-width:980px){.pdp{grid-template-columns:1fr;gap:34px}.incl{grid-template-columns:1fr 1fr}.grid{grid-template-columns:1fr 1fr}.fgrid{grid-template-columns:1fr 1fr}}
-@media(max-width:640px){.nav-links .link{display:none}.incl,.grid,.fgrid,.two{grid-template-columns:1fr}
+@media(max-width:980px){.pdp{grid-template-columns:1fr;gap:34px}.pdp>div:first-child{position:static}.incl{grid-template-columns:1fr 1fr}.grid{grid-template-columns:1fr 1fr}.fgrid{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){header .btn-wa{font-size:.78rem;padding:.7em .95em;gap:6px}.add{display:none}.addon-wrap{gap:10px}.an{font-size:.86rem}.nav-links .link{display:none}.incl,.grid,.fgrid,.two{grid-template-columns:1fr}
  .ribbon{font-size:.66rem;letter-spacing:.03em}.brand .name{font-size:1.05rem}}
 </style>
 <meta property="og:image" content="https://theplushhouse.co.uk/images/lilly-set/1.jpg" />
 <meta name="twitter:image" content="https://theplushhouse.co.uk/images/lilly-set/1.jpg" />
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "CollectionPage", "name": "2 & 3 Seater Sofa Sets", "url": "https://theplushhouse.co.uk/2-and-3-seater-sofas.html", "description": "Matching two-seater and three-seater sofa sets, made to measure in any fabric or leather. Delivered, assembled and placed in your home in one visit.", "mainEntity": {"@type": "ItemList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Lilly 2+3 Seater Sofa", "url": "https://theplushhouse.co.uk/sofas/lilly-2-and-3-seater-sofa.html"}, {"@type": "ListItem", "position": 2, "name": "Harrison 2+3 Seater Sofa", "url": "https://theplushhouse.co.uk/sofas/harrison-2-and-3-seater-sofa.html"}, {"@type": "ListItem", "position": 3, "name": "Olympia 2+3 Seater Sofa", "url": "https://theplushhouse.co.uk/sofas/olympia-2-and-3-seater-sofa.html"}, {"@type": "ListItem", "position": 4, "name": "Elaska Sofa", "url": "https://theplushhouse.co.uk/sofas/elaska-sofa.html"}]}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "CollectionPage", "name": "2 & 3 Seater Sofa Sets", "url": "https://theplushhouse.co.uk/2-and-3-seater-sofas.html", "description": "Matching two-seater and three-seater sofa sets, made to measure in any fabric or leather. Delivered, assembled and placed in your home in one visit.", "mainEntity": {"@type": "ItemList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Lilly 2+3 Seater Sofa", "url": "https://theplushhouse.co.uk/sofas/lilly-2-and-3-seater-sofa.html"}, {"@type": "ListItem", "position": 2, "name": "Harrison 2+3 Seater Sofa", "url": "https://theplushhouse.co.uk/sofas/harrison-2-and-3-seater-sofa.html"}, {"@type": "ListItem", "position": 3, "name": "Olympia 2+3 Seater Sofa", "url": "https://theplushhouse.co.uk/sofas/olympia-2-and-3-seater-sofa.html"}, {"@type": "ListItem", "position": 4, "name": "Elaska 2+3 Seater Sofa", "url": "https://theplushhouse.co.uk/sofas/elaska-sofa.html"}]}}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://theplushhouse.co.uk/"}, {"@type": "ListItem", "position": 2, "name": "2 & 3 Seater Sofa Sets", "item": "https://theplushhouse.co.uk/2-and-3-seater-sofas.html"}]}</script>
 </head>
 <body>
@@ -245,7 +261,7 @@ footer{border-top:1px solid var(--line-soft);background:var(--bg-2);padding:52px
     <span class="eyebrow">Sofa Sets</span>
     <h1 class="serif">2 & 3 Seater Sofa Sets</h1>
     <p style="font-size:1.05rem">Two sofas facing each other change a room more than one large corner does. Every set here arrives as a matching pair, and our team builds and places both pieces in a single visit.</p>
-    <div class="grid" style="margin-top:40px"><a class="card" href="/sofas/lilly-2-and-3-seater-sofa.html"><div class="card-img"><img src="/images/lilly-set/1.jpg" alt="Lilly 2+3 Seater sofa" loading="lazy"></div><div class="card-b"><h2 class="serif ct">Lilly 2+3 Seater</h2><p>The Lilly two-seater and three-seater set — the same plush channel-stitched design, sold as a matching pair to fill your living room.</p><div class="card-p serif">£1149<small>Delivered &amp; assembled</small></div></div></a><a class="card" href="/sofas/harrison-2-and-3-seater-sofa.html"><div class="card-img"><img src="/images/shannon-set/1.jpg" alt="Harrison 2+3 Seater sofa" loading="lazy"></div><div class="card-b"><h2 class="serif ct">Harrison 2+3 Seater</h2><p>The Harrison two-seater and three-seater set — timeless British craftsmanship, sold as a matching pair.</p><div class="card-p serif">£799<small>Delivered &amp; assembled</small></div></div></a><a class="card" href="/sofas/olympia-2-and-3-seater-sofa.html"><div class="card-img"><img src="/images/verona-set/1.jpg" alt="Olympia 2+3 Seater sofa" loading="lazy"></div><div class="card-b"><h2 class="serif ct">Olympia 2+3 Seater</h2><p>The Olympia two-seater and three-seater set — grand, elegant proportions, sold as a matching pair.</p><div class="card-p serif">£799<small>Delivered &amp; assembled</small></div></div></a><a class="card" href="/sofas/elaska-sofa.html"><div class="card-img"><img src="/images/elaska/1.jpg" alt="Elaska sofa" loading="lazy"></div><div class="card-b"><h2 class="serif ct">Elaska</h2><p>Scandinavian-influenced design with clean geometric lines. The Elaska brings sophisticated minimalism to your home.</p><div class="card-p serif">£1149<small>Delivered &amp; assembled</small></div></div></a></div>
+    <div class="grid" style="margin-top:40px"><a class="card" href="/sofas/lilly-2-and-3-seater-sofa.html"><div class="card-img"><img src="/images/lilly-set/1.jpg" alt="Lilly 2+3 Seater sofa" loading="lazy"></div><div class="card-b"><h2 class="serif ct">Lilly 2+3 Seater</h2><p>The Lilly two-seater and three-seater set — the same plush channel-stitched design, sold as a matching pair to fill your living room.</p><div class="card-p serif">£1149<small>Delivered &amp; assembled</small></div></div></a><a class="card" href="/sofas/harrison-2-and-3-seater-sofa.html"><div class="card-img"><img src="/images/shannon-set/1.jpg" alt="Harrison 2+3 Seater sofa" loading="lazy"></div><div class="card-b"><h2 class="serif ct">Harrison 2+3 Seater</h2><p>The Harrison two-seater and three-seater set — timeless British craftsmanship, sold as a matching pair.</p><div class="card-p serif">£799<small>Delivered &amp; assembled</small></div></div></a><a class="card" href="/sofas/olympia-2-and-3-seater-sofa.html"><div class="card-img"><img src="/images/verona-set/1.jpg" alt="Olympia 2+3 Seater sofa" loading="lazy"></div><div class="card-b"><h2 class="serif ct">Olympia 2+3 Seater</h2><p>The Olympia two-seater and three-seater set — grand, elegant proportions, sold as a matching pair.</p><div class="card-p serif">£799<small>Delivered &amp; assembled</small></div></div></a><a class="card" href="/sofas/elaska-sofa.html"><div class="card-img"><img src="/images/elaska/1.jpg" alt="Elaska 2+3 Seater sofa" loading="lazy"></div><div class="card-b"><h2 class="serif ct">Elaska 2+3 Seater</h2><p>Deep button-tufted arms and base, bolster cushions and a low, clean frame — a two-seater and three-seater sold as a matching pair.</p><div class="card-p serif">£899<small>Delivered &amp; assembled</small></div></div></a></div>
   </div>
 </section>
 

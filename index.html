@@ -352,6 +352,7 @@ header{
 .acc-body h3{font-family:'Cormorant Garamond','Cormorant FB1','Cormorant FB2',serif;font-size:1.5rem;font-weight:500;margin-bottom:6px}
 .acc-body p{color:var(--muted);font-size:.88rem;margin-bottom:16px;flex:1}
 .acc-price{font-family:'Cormorant Garamond','Cormorant FB1','Cormorant FB2',serif;font-size:1.9rem;font-weight:600;color:var(--brass-bright);line-height:1;margin-bottom:16px}
+.acc-sw{display:flex;gap:8px;margin:-6px 0 14px}
 .acc-with{display:block;font-family:'Manrope','Manrope FB1','Manrope FB2','Manrope FB3',sans-serif;font-size:.7rem;font-weight:500;color:var(--muted);letter-spacing:.07em;text-transform:uppercase;margin-top:7px}
 @media(max-width:820px){ .acc-grid{grid-template-columns:1fr} }
 
@@ -417,7 +418,7 @@ footer{border-top:1px solid var(--line-soft);background:var(--bg-2);padding:56px
 .modal.open{display:flex}
 .modal-box{
   background:var(--bg-2);border:1px solid var(--line);border-radius:6px;
-  max-width:1280px;width:96vw;height:92vh;max-height:92vh;overflow:hidden;display:grid;grid-template-columns:1.15fr 1fr;
+  max-width:1440px;width:96vw;height:92vh;max-height:92vh;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;
 }
 .modal-gallery{background:#efece6;position:relative;min-height:340px;overflow:hidden}
 .modal-gallery .slides{display:flex;height:100%;transition:transform .45s cubic-bezier(.22,1,.36,1)}
@@ -432,8 +433,25 @@ footer{border-top:1px solid var(--line-soft);background:var(--bg-2);padding:56px
 .modal-gallery .dots{position:absolute;bottom:14px;left:0;right:0;display:flex;justify-content:center;gap:7px}
 .modal-gallery .dot{width:7px;height:7px;border-radius:50%;background:rgba(242,236,227,.4)}
 .modal-gallery .dot.active{background:var(--brass);width:20px;border-radius:3px}
-.modal-content{padding:40px 40px 34px;position:relative;background:var(--bg-2);z-index:2;overflow-y:auto}
-.modal-close{position:absolute;top:16px;right:18px;font-size:1.5rem;color:var(--muted);line-height:1}
+.modal-content{position:relative;background:var(--bg-2);z-index:2;display:flex;flex-direction:column;min-height:0;overflow:hidden}
+.m-scroll{flex:1;min-height:0;overflow-y:auto;padding:38px 44px 28px}
+.m-head{padding-right:30px;margin-bottom:6px}
+.m-sec{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;margin:22px 0 12px}
+.m-sec:first-child{margin-top:26px}
+.m-step{width:26px;height:26px;border-radius:50%;border:1px solid var(--brass);color:var(--brass-bright);
+  display:inline-flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;flex:none}
+.m-sec-t{font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ivory);font-weight:700;margin:0}
+.m-sec-n{flex-basis:100%;font-size:.84rem;color:var(--muted);padding-left:38px}
+.m-sec-n b{color:var(--brass-bright);font-weight:600}
+.m-foot{flex:none;border-top:1px solid var(--line);background:var(--surface);padding:16px 44px 16px;
+  box-shadow:0 -14px 30px -18px rgba(0,0,0,.6)}
+.m-foot-row{display:flex;align-items:center;gap:22px}
+.m-total{display:flex;flex-direction:column;line-height:1.05;flex:none}
+.m-foot .btn-wa{flex:1;width:auto;margin:0;padding:1.05em 1.4em;font-size:.98rem;justify-content:center}
+.m-foot-sub{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:6px 16px;margin-top:10px}
+.m-ask{font-size:.84rem;color:var(--brass-bright);text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--line)}
+.m-ask:hover{color:var(--ivory)}
+.modal-close{position:absolute;top:14px;right:16px;z-index:3;width:38px;height:38px;border-radius:50%;background:var(--surface);border:1px solid var(--line-soft);font-size:1.4rem;color:var(--muted);line-height:1;display:flex;align-items:center;justify-content:center}
 .modal-close:hover{color:var(--ivory)}
 .modal-content .m-name{font-family:'Cormorant Garamond','Cormorant FB1','Cormorant FB2',serif;font-size:2.3rem;font-weight:600;line-height:1.05;margin-bottom:6px}
 .modal-content .m-price{font-family:'Cormorant Garamond','Cormorant FB1','Cormorant FB2',serif;font-size:1.7rem;color:var(--brass-bright);margin-bottom:16px}
@@ -445,8 +463,8 @@ footer{border-top:1px solid var(--line-soft);background:var(--bg-2);padding:56px
 }
 .form-control:focus{outline:none;border-color:var(--brass)}
 textarea.form-control{resize:vertical;min-height:64px}
-.modal-content .btn{width:100%;justify-content:center;margin-top:14px}
-.cod-note{font-size:.78rem;color:var(--muted-2);text-align:center;margin-top:12px}
+
+.cod-note{font-size:.76rem;color:var(--muted-2)}
 .m-info{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px}
 .m-info span{
   font-size:.72rem;letter-spacing:.02em;color:var(--brass-bright);
@@ -466,19 +484,31 @@ textarea.form-control{resize:vertical;min-height:64px}
 .reveal.in{opacity:1;transform:none}
 
 /* ---------- Price Builder ---------- */
-.price-builder{
-  margin:0 0 16px;
-  background:var(--surface-2);
-  border:1px solid var(--line-soft);
-  border-radius:4px;
-  padding:12px 14px 10px;
-  position:relative;
-  overflow:hidden;
-}
-.price-builder::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:2px;
-  background:linear-gradient(90deg,var(--brass),var(--brass-bright),var(--brass));
-}
+.price-builder{position:relative}
+.pb-addons{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.pb-addon{position:relative;display:flex;flex-direction:column;border:1px solid var(--line-soft);border-radius:6px;
+  background:var(--surface);cursor:pointer;overflow:hidden;user-select:none;transition:border-color .2s,box-shadow .2s,transform .2s}
+.pb-addon:hover{border-color:var(--line);transform:translateY(-2px)}
+.pb-addon:focus-visible{outline:2px solid var(--brass);outline-offset:2px}
+.pb-addon.active{border-color:var(--brass);box-shadow:0 0 0 1px var(--brass)}
+.pb-media{position:relative;aspect-ratio:4/3;background:#efece6}
+.pb-media img{width:100%;height:100%;object-fit:cover;display:block}
+.pb-check{position:absolute;top:10px;right:10px;width:28px;height:28px;border-radius:50%;
+  background:rgba(22,18,26,.55);border:1.5px solid rgba(242,236,227,.85);display:flex;align-items:center;justify-content:center;transition:background .2s,border-color .2s}
+.pb-addon.active .pb-check{background:var(--brass);border-color:var(--brass)}
+.pb-check-icon{font-size:.85rem;font-weight:700;color:#1a130a;opacity:0;transition:opacity .15s}
+.pb-addon.active .pb-check-icon{opacity:1}
+.pb-body{padding:12px 14px 14px;display:flex;flex-direction:column;gap:3px;flex:1}
+.pb-addon-name{font-size:.95rem;color:var(--ivory);font-weight:600;line-height:1.3}
+.pb-addon-sub{font-size:.78rem;color:var(--muted)}
+.pb-addon-foot{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:8px}
+.pb-addon-price{font-family:'Cormorant Garamond','Cormorant FB1','Cormorant FB2',serif;font-size:1.5rem;color:var(--brass-bright);font-weight:600;line-height:1}
+.pb-add{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--brass)}
+.pb-addon.active .pb-add{color:var(--wa)}
+.pb-swatches{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.pb-sw{display:inline-flex;align-items:center;gap:6px;font-size:.74rem;color:var(--muted);min-height:32px;padding:4px 11px 4px 6px;border:1px solid var(--line-soft);border-radius:999px;background:transparent;cursor:pointer;font-family:inherit}
+.pb-sw i{width:16px;height:16px;border-radius:50%;border:1px solid rgba(242,236,227,.35)}
+.pb-sw.on{border-color:var(--brass);color:var(--ivory)}
 .pb-label{
   font-size:.65rem;letter-spacing:.22em;text-transform:uppercase;
   color:var(--brass);font-weight:600;margin-bottom:10px;display:block;
@@ -493,33 +523,7 @@ textarea.form-control{resize:vertical;min-height:64px}
   font-family:'Cormorant Garamond','Cormorant FB1','Cormorant FB2',serif;font-size:1.7rem;
   font-weight:600;color:var(--brass-bright);
 }
-.pb-addon-note{font-size:.74rem;color:var(--muted-2);letter-spacing:.04em;text-align:center;padding:10px 4px 2px}
-.pb-addons{display:flex;flex-direction:column;gap:7px;max-height:290px;overflow-y:auto;padding-right:4px}
-.pb-addons::-webkit-scrollbar{width:5px}
-.pb-addons::-webkit-scrollbar-thumb{background:var(--line);border-radius:3px}
-.pb-addon{
-  display:flex;align-items:center;justify-content:space-between;gap:8px;
-  padding:7px 10px;border-radius:3px;border:1px solid var(--line-soft);
-  background:var(--surface);cursor:pointer;
-  transition:border-color .22s,background .22s,transform .18s;
-  user-select:none;
-}
-.pb-addon:hover{border-color:var(--brass);transform:translateX(2px)}
-.pb-addon.active{border-color:var(--brass);background:rgba(201,168,106,.07)}
-.pb-addon-left{display:flex;align-items:center;gap:8px}
-.pb-thumb{width:44px;height:44px;border-radius:6px;object-fit:cover;background:#efece6;border:1px solid rgba(201,168,106,.25);flex:none}
 .pb-emoji{width:44px;height:44px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;border-radius:6px;background:rgba(201,168,106,.08);border:1px solid rgba(201,168,106,.2);flex:none}
-.pb-check{
-  width:17px;height:17px;border-radius:3px;border:1.5px solid var(--muted-2);
-  display:flex;align-items:center;justify-content:center;
-  transition:background .2s,border-color .2s;flex-shrink:0;
-}
-.pb-addon.active .pb-check{background:var(--brass);border-color:var(--brass)}
-.pb-check-icon{font-size:.7rem;color:#1a130a;opacity:0;transition:opacity .15s}
-.pb-addon.active .pb-check-icon{opacity:1}
-.pb-addon-name{font-size:.8rem;color:var(--ivory);font-weight:500}
-.pb-addon-sub{font-size:.68rem;color:var(--muted-2);margin-top:1px}
-.pb-addon-price{font-size:1.05rem;color:var(--brass);font-weight:700;white-space:nowrap}
 .pb-total-row{
   display:flex;align-items:baseline;justify-content:space-between;
   margin-top:14px;padding-top:14px;border-top:1px solid var(--line-soft);
@@ -571,12 +575,25 @@ textarea.form-control{resize:vertical;min-height:64px}
   .grid{grid-template-columns:repeat(2,1fr)}
   .why-grid{grid-template-columns:1fr}
   .quotes{grid-template-columns:1fr}
-  .modal-box{grid-template-columns:1fr;height:94vh;max-height:94vh;overflow-y:auto;grid-template-rows:auto 1fr}
-  .modal-gallery{min-height:300px;height:42vh}
-  .modal-content{overflow-y:visible}
+  .modal-box{grid-template-columns:1fr;height:94vh;max-height:94vh;overflow-y:auto;grid-template-rows:auto auto;align-content:start}
+  .modal-gallery{min-height:280px;height:40vh}
+  .modal-content{overflow:visible;display:block}
+  .m-scroll{overflow:visible;flex:none;min-height:auto;padding:26px 20px 20px}
+  .m-foot{position:sticky;bottom:0;padding:12px 16px 12px}
+  .m-foot-row{gap:14px}
+  .m-foot .btn-wa{font-size:.9rem;padding:.95em 1em}
+  .m-sec-n{padding-left:0}
   .foot-grid{grid-template-columns:1fr 1fr}
 }
 @media(max-width:760px){
+  .pb-addons{gap:10px}
+  .pb-body{padding:10px 10px 12px}
+  .pb-addon-name{font-size:.86rem}
+  .pb-addon-price{font-size:1.3rem}
+  .pb-add{display:none}
+  .pb-sw{font-size:.72rem;padding:4px 9px 4px 5px;gap:5px}
+  .pb-sw i{width:13px;height:13px}
+  .m-foot-sub .cod-note{display:none}
   .nav-links{display:none}
   .burger{display:flex;flex-direction:column;gap:5px;padding:8px}
   .burger span{width:24px;height:2px;background:var(--ivory);display:block}
@@ -898,17 +915,12 @@ function addonImgErr(img){
         <div class="acc-body">
           <h3>Lilly Coffee Table</h3>
           <p>Soft fluted panels wrapped around a clear glass top &mdash; the Lilly channel stitching carried into the middle of the room.</p>
+          <div class="acc-sw" role="group" aria-label="Colour">
+            <button type="button" class="pb-sw on" data-accsw="images/accessories/lilly-coffee-table.jpg|Taupe"><i style="background:#b6aa9c"></i>Taupe</button>
+            <button type="button" class="pb-sw" data-accsw="images/accessories/lilly-coffee-table-charcoal.jpg|Charcoal"><i style="background:#3a393c"></i>Charcoal</button>
+          </div>
           <div class="acc-price">£199<span class="acc-with">£179 with any sofa</span></div>
           <a class="btn btn-wa acc-wa" data-acc="Lilly Coffee Table" data-price="199" href="#" target="_blank" rel="noopener">Add on WhatsApp</a>
-        </div>
-      </div>
-      <div class="acc-card">
-        <div class="acc-img"><img src="images/accessories/lilly-coffee-table-charcoal.jpg" alt="Lilly Coffee Table - Charcoal in matching fabric" loading="lazy" decoding="async"></div>
-        <div class="acc-body">
-          <h3>Lilly Coffee Table &mdash; Charcoal</h3>
-          <p>The fluted Lilly table in deep charcoal velvet. Any of our fabrics and colours are available.</p>
-          <div class="acc-price">£199<span class="acc-with">£179 with any sofa</span></div>
-          <a class="btn btn-wa acc-wa" data-acc="Lilly Coffee Table - Charcoal" data-price="199" href="#" target="_blank" rel="noopener">Add on WhatsApp</a>
         </div>
       </div>
       <div class="acc-card">
@@ -1103,58 +1115,63 @@ function addonImgErr(img){
     <div class="modal-gallery" id="modalGallery"></div>
     <div class="modal-content">
       <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
-      <h3 class="m-name serif" id="mName"></h3>
-      <div class="m-price serif" id="mPrice"></div>
-      <p class="m-desc" id="mDesc"></p>
-      <div class="m-info">
-        <span>⚡ 24–72hr delivery</span>
-        <span>↺ 14-day returns</span>
-        <span>£ Settle when you are happy</span>
-      </div>
-
-      <!-- PRICE BUILDER inside modal -->
-      <div class="price-builder" id="modalPriceBuilder">
-        <span class="pb-label">✦ Build your set</span>
-        <div class="pb-sofa-row" id="mPbSofaRow">
-          <span class="pb-sofa-name" id="mPbSofaName">Sofa</span>
-          <span class="pb-sofa-price serif" id="mPbSofaPrice">£0</span>
-        </div>
-        <div class="pb-tiers" id="mTierBox" style="display:none"></div>
-        <div class="pb-addons" id="mPbAddons"></div>
-        <div class="pb-total-row">
-          <span class="pb-total-label">Your total</span>
-          <span class="pb-total-price serif" id="mPbTotal">£0</span>
-        </div>
-      </div>
-
-      <div id="orderForm" class="order-form hidden">
-        <div class="of-head">Your delivery details</div>
-        <label class="form-label" for="fName">Your name</label>
-        <input class="form-control" id="fName" type="text" placeholder="Full name" />
-        <label class="form-label" for="fPhone">Phone number</label>
-        <input class="form-control" id="fPhone" type="tel" placeholder="07xxx xxxxxx" />
-        <label class="form-label" for="fAddr">Delivery address</label>
-        <input class="form-control" id="fAddr" type="text" placeholder="House number & street" />
-        <div class="form-row">
-          <div>
-            <label class="form-label" for="fTown">Town / city</label>
-            <input class="form-control" id="fTown" type="text" placeholder="Town" />
-          </div>
-          <div>
-            <label class="form-label" for="fPostcode">Postcode</label>
-            <input class="form-control" id="fPostcode" type="text" placeholder="e.g. M1 2AB" />
+      <div class="m-scroll" id="mScroll">
+        <div class="m-head">
+          <h3 class="m-name serif" id="mName"></h3>
+          <div class="m-price serif" id="mPrice"></div>
+          <p class="m-desc" id="mDesc"></p>
+          <div class="m-info">
+            <span>⚡ 24–72hr delivery</span>
+            <span>↺ 14-day returns</span>
+            <span>£ Settle when you are happy</span>
           </div>
         </div>
+
+        <div class="price-builder" id="modalPriceBuilder">
+          <div class="m-sec"><span class="m-step">1</span><h4 class="m-sec-t">Your sofa</h4></div>
+          <div class="pb-sofa-row" id="mPbSofaRow">
+            <span class="pb-sofa-name" id="mPbSofaName">Sofa</span>
+            <span class="pb-sofa-price serif" id="mPbSofaPrice">£0</span>
+          </div>
+          <div class="pb-tiers" id="mTierBox" style="display:none"></div>
+
+          <div class="m-sec m-sec-2"><span class="m-step">2</span><h4 class="m-sec-t">Complete the room</h4>
+            <span class="m-sec-n">Made in your sofa&rsquo;s fabric &middot; <b>£179 each</b> with your sofa (£199 on its own)</span></div>
+          <div class="pb-addons" id="mPbAddons"></div>
+        </div>
+
+        <div id="orderForm" class="order-form hidden">
+          <div class="m-sec"><span class="m-step">3</span><h4 class="m-sec-t">Your delivery details</h4></div>
+          <label class="form-label" for="fName">Your name</label>
+          <input class="form-control" id="fName" type="text" placeholder="Full name" autocomplete="name" />
+          <label class="form-label" for="fPhone">Phone number</label>
+          <input class="form-control" id="fPhone" type="tel" placeholder="07xxx xxxxxx" autocomplete="tel" />
+          <label class="form-label" for="fAddr">Delivery address</label>
+          <input class="form-control" id="fAddr" type="text" placeholder="House number &amp; street" autocomplete="street-address" />
+          <div class="form-row">
+            <div>
+              <label class="form-label" for="fTown">Town / city</label>
+              <input class="form-control" id="fTown" type="text" placeholder="Town" autocomplete="address-level2" />
+            </div>
+            <div>
+              <label class="form-label" for="fPostcode">Postcode</label>
+              <input class="form-control" id="fPostcode" type="text" placeholder="e.g. M1 2AB" autocomplete="postal-code" />
+            </div>
+          </div>
+        </div>
       </div>
-      <button class="btn btn-wa" id="placeOrder">
-        <svg class="wa-ic" viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.13c-1.5 0-2.97-.4-4.25-1.16l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.35c0-4.54 3.7-8.23 8.25-8.23 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.7 8.21-8.23 8.21Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.51.11-.11.25-.29.37-.43.13-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.28Z"/></svg>
-        <span id="placeOrderText">Order now — no payment required</span>
-      </button>
-      <a class="btn btn-ask" id="askOrder" href="#" target="_blank" rel="noopener">
-        <svg class="wa-ic" viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.13c-1.5 0-2.97-.4-4.25-1.16l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.35c0-4.54 3.7-8.23 8.25-8.23 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.7 8.21-8.23 8.21Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.51.11-.11.25-.29.37-.43.13-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.28Z"/></svg>
-        Ask us a question on WhatsApp
-      </a>
-      <div class="cod-note">No payment now. Confirm on WhatsApp, our team delivers it within 24&ndash;72 hours, assembles it in your home and places it where you want it &mdash; and you settle in cash only once you are happy with it.</div>
+
+      <div class="m-foot">
+        <div class="m-foot-row">
+          <div class="m-total"><span class="pb-total-label">Your total</span><span class="pb-total-price serif" id="mPbTotal">£0</span></div>
+          <button class="btn btn-wa" id="placeOrder"><svg class="wa-ic" viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.13c-1.5 0-2.97-.4-4.25-1.16l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.35c0-4.54 3.7-8.23 8.25-8.23 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.7 8.21-8.23 8.21Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.51.11-.11.25-.29.37-.43.13-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.28Z"/></svg><span id="placeOrderText">Order now — no payment required</span></button>
+        </div>
+        <div class="m-foot-sub">
+          <a class="m-ask" id="askOrder" href="#" target="_blank" rel="noopener">Ask us a question on WhatsApp</a>
+          <span class="cod-note">No payment now &middot; delivered, assembled &amp; placed in 24&ndash;72h &middot; settle in cash when happy</span>
+        </div>
+      </div>
+    </div>
     </div>
   </div>
 </div>
@@ -1206,8 +1223,8 @@ const PRODUCTS = [
   { slug:"ambassador", photos:["1.jpg"], url:"chesterfield-sofa", name:"Chesterfield", price:1249, images:1, tag:"Premium", stool:"add",
     tiers:[["Without table",1249],["With table",1449]],
     desc:"Commanding presence, exceptional comfort. The Chesterfield is built for those who don't compromise on their living space." },
-  { slug:"elaska", photos:["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg"], url:"elaska-sofa", name:"Elaska", price:1149, images:6, tag:"Premium", stool:"add",
-    desc:"Scandinavian-influenced design with clean geometric lines. The Elaska brings sophisticated minimalism to your home." },
+  { slug:"elaska", photos:["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg"], url:"elaska-sofa", name:"Elaska 2+3 Seater", price:899, images:6, tag:"Premium", stool:"add",
+    desc:"Deep button-tufted arms and base, bolster cushions and a low, clean frame \u2014 a two-seater and three-seater sold as a matching pair." },
 ];
 
 const waText = (msg) => `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
@@ -1340,30 +1357,39 @@ let currentProduct=null;
 /* Every table and stool is £199 on its own and £179 alongside a sofa — these
    sit inside the order modal, so the with-sofa price is the one shown. */
 const ACCESSORIES = [
-  {id:"coffee-table",                 name:"Coffee Table",                  sub:"Panelled · inset glass top",     img:"images/accessories/coffeetable1.jpg"},
-  {id:"ashton-coffee-table",          name:"Ashton Coffee Table",           sub:"Button tufted · glass top",      img:"images/accessories/ashton-coffee-table.jpg"},
-  {id:"lilly-coffee-table",           name:"Lilly Coffee Table",            sub:"Fluted panels · glass top",      img:"images/accessories/lilly-coffee-table.jpg"},
-  {id:"lilly-coffee-table-charcoal",  name:"Lilly Coffee Table — Charcoal", sub:"Fluted · deep charcoal velvet",  img:"images/accessories/lilly-coffee-table-charcoal.jpg"},
-  {id:"chesterfield-coffee-table",    name:"Chesterfield Coffee Table",     sub:"Turned legs · brass caps",       img:"images/accessories/chesterfield-coffee-table.jpg"},
-  {id:"ashton-stool",                 name:"Ashton Stool",                  sub:"Square · chrome feet",           img:"images/accessories/ashton-stool.jpg"},
-  {id:"chesterfield-stool",           name:"Chesterfield Stool",            sub:"Generous square ottoman",        img:"images/accessories/chesterfield-stool.jpg"},
-  {id:"round-ottoman-stool",          name:"Round Ottoman Stool",           sub:"Round · button tufted",          img:"images/accessories/round-ottoman-stool.jpg"},
+  {id:"coffee-table",              name:"Coffee Table",              sub:"Panelled · inset glass top",  img:"images/accessories/coffeetable1.jpg"},
+  {id:"ashton-coffee-table",       name:"Ashton Coffee Table",       sub:"Button tufted · glass top",   img:"images/accessories/ashton-coffee-table.jpg"},
+  {id:"lilly-coffee-table",        name:"Lilly Coffee Table",        sub:"Fluted panels · glass top",
+    colours:[{name:"Taupe",    hex:"#b6aa9c", img:"images/accessories/lilly-coffee-table.jpg"},
+             {name:"Charcoal", hex:"#3a393c", img:"images/accessories/lilly-coffee-table-charcoal.jpg"}]},
+  {id:"chesterfield-coffee-table", name:"Chesterfield Coffee Table", sub:"Turned legs · brass caps",    img:"images/accessories/chesterfield-coffee-table.jpg"},
+  {id:"ashton-stool",              name:"Ashton Stool",              sub:"Square · chrome feet",        img:"images/accessories/ashton-stool.jpg"},
+  {id:"chesterfield-stool",        name:"Chesterfield Stool",        sub:"Generous square ottoman",     img:"images/accessories/chesterfield-stool.jpg"},
+  {id:"round-ottoman-stool",       name:"Round Ottoman Stool",       sub:"Round · button tufted",       img:"images/accessories/round-ottoman-stool.jpg"},
 ];
 const ACC_WITH_SOFA = 179;
 let mPbState = new Set();
+const mColour = {};                       // accessory id -> chosen colour index
+const accColour = a => a.colours ? a.colours[mColour[a.id]||0] : null;
+const accImg = a => a.colours ? accColour(a).img : a.img;
+const accLabel = a => a.colours ? `${a.name} (${accColour(a).name})` : a.name;
 function renderAddons(){
   const box=document.getElementById("mPbAddons");
   if(!box) return;
-  box.innerHTML = ACCESSORIES.map(a=>`
-    <div class="pb-addon${mPbState.has(a.id)?" active":""}" data-addon="${a.id}">
-      <div class="pb-addon-left">
-        <div class="pb-check"><span class="pb-check-icon">\u2713</span></div>
-        <img class="pb-thumb" src="${a.img}" alt="${a.name}" loading="lazy" decoding="async" data-fallbacks='[]' data-emoji="\u2726" onerror="addonImgErr(this)">
-        <div><div class="pb-addon-name">${a.name}</div><div class="pb-addon-sub">${a.sub}</div></div>
+  box.innerHTML = ACCESSORIES.map(a=>{
+    const on = mPbState.has(a.id);
+    const sw = a.colours ? `<div class="pb-swatches">${a.colours.map((c,i)=>
+      `<button type="button" class="pb-sw${(mColour[a.id]||0)===i?" on":""}" data-sw="${a.id}|${i}" aria-label="${c.name}"><i style="background:${c.hex}"></i>${c.name}</button>`).join("")}</div>` : "";
+    return `<div class="pb-addon${on?" active":""}" data-addon="${a.id}" role="checkbox" aria-checked="${on}" tabindex="0">
+      <div class="pb-media"><img src="${accImg(a)}" alt="${a.name}" loading="lazy" decoding="async">
+        <div class="pb-check"><span class="pb-check-icon">\u2713</span></div></div>
+      <div class="pb-body">
+        <div class="pb-addon-name">${a.name}</div>
+        <div class="pb-addon-sub">${a.sub}</div>${sw}
+        <div class="pb-addon-foot"><span class="pb-addon-price">+£${ACC_WITH_SOFA}</span><span class="pb-add">${on?"\u2713 Added":"+ Add"}</span></div>
       </div>
-      <span class="pb-addon-price">+£${ACC_WITH_SOFA}</span>
-    </div>`).join("")
-    + `<div class="pb-addon-note">£199 on its own · £${ACC_WITH_SOFA} with your sofa</div>`;
+    </div>`;
+  }).join("");
 }
 function selectedAddons(){
   return ACCESSORIES.filter(a=>mPbState.has(a.id));
@@ -1434,7 +1460,7 @@ function updateModalWaButtons(){
   setTimeout(()=>totalEl.classList.remove("pulse"),450);
   // update m-price header
   const extras = [];
-  selectedAddons().forEach(a=>extras.push(`${a.name} (+£${ACC_WITH_SOFA})`));
+  selectedAddons().forEach(a=>extras.push(`${accLabel(a)} (+£${ACC_WITH_SOFA})`));
   // update ask link
   const askMsg = `Hi The Plush House! I have a question about the *${currentProduct.name}* sofa. Could you help me please?`;
   document.getElementById("askOrder").href = waText(askMsg);
@@ -1447,7 +1473,9 @@ async function openModal(slug){
   try { if (typeof gtag === 'function') gtag('event','view_item',{ product: p.name, items:[{ item_name: p.name }] }); } catch(e){}
   // reset modal builder state
   mPbState = new Set();
+  for(const k in mColour) delete mColour[k];
   renderAddons();
+  const ms=document.getElementById("mScroll"); if(ms) ms.scrollTop=0;
 
   document.getElementById("mName").textContent=p.name;
   document.getElementById("mDesc").textContent=p.desc;
@@ -1494,12 +1522,25 @@ document.getElementById("modalPriceBuilder").addEventListener("click",e=>{
     updateModalWaButtons();
     return;
   }
+  const sw = e.target.closest(".pb-sw");
+  if(sw){
+    const [id,i] = sw.dataset.sw.split("|");
+    mColour[id] = +i; mPbState.add(id);          // picking a colour means "I want this one"
+    renderAddons(); updateModalWaButtons();
+    return;
+  }
   const addonEl = e.target.closest(".pb-addon");
   if(!addonEl) return;
-  const addon = addonEl.dataset.addon;
-  if(mPbState.has(addon)) mPbState.delete(addon); else mPbState.add(addon);
-  addonEl.classList.toggle("active", mPbState.has(addon));
-  updateModalWaButtons();
+  toggleAddon(addonEl.dataset.addon);
+});
+function toggleAddon(id){
+  if(mPbState.has(id)) mPbState.delete(id); else mPbState.add(id);
+  renderAddons(); updateModalWaButtons();
+  const el=document.querySelector(`#mPbAddons [data-addon="${id}"]`); if(el && document.activeElement===document.body) el.focus({preventScroll:true});
+}
+document.getElementById("mPbAddons").addEventListener("keydown",e=>{
+  const t=e.target.closest(".pb-addon");
+  if(t && e.target===t && (e.key===" "||e.key==="Enter")){ e.preventDefault(); toggleAddon(t.dataset.addon); }
 });
 
 grid.addEventListener("click",e=>{
@@ -1524,7 +1565,7 @@ document.getElementById("placeOrder").addEventListener("click",()=>{
   if(of.classList.contains("hidden")){
     of.classList.remove("hidden");
     pot.textContent="Send my order on WhatsApp";
-    of.scrollIntoView({behavior:"smooth",block:"nearest"});
+    of.scrollIntoView({behavior:"smooth",block:"start"});
     document.getElementById("fName").focus();
     return;
   }
@@ -1536,7 +1577,7 @@ document.getElementById("placeOrder").addEventListener("click",()=>{
   const postcode=document.getElementById("fPostcode").value.trim();
   const total = calcModalTotal();
   let extras=[];
-  selectedAddons().forEach(a=>extras.push(`${a.name} (+£${ACC_WITH_SOFA})`));
+  selectedAddons().forEach(a=>extras.push(`${accLabel(a)} (+£${ACC_WITH_SOFA})`));
   let msg=`Hi The Plush House! I'd like to order:\n\n`;
   if(mChester.active){
     msg+=`*${currentProduct.name}* — ${mChester.label} — £${mChester.base}\n`;
@@ -1602,7 +1643,7 @@ document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
             <option>Ambassador</option>
             <option>Borius</option>
             <option>Chesterfield</option>
-            <option>Elaska</option>
+            <option>Elaska 2+3 Seater</option>
             <option>Not sure — need a recommendation</option>
           </select>
         </div>
@@ -1728,6 +1769,19 @@ document.querySelectorAll('.acc-wa').forEach(a=>{
   a.href=waText(`Hi The Plush House! I would like to add the *${name}* (£${price}) to my order. Does it come in my sofa fabric?`);
   a.addEventListener('click',()=>{
     try{ if(typeof gtag==='function') gtag('event','whatsapp_click',{product:name}); }catch(e){}
+  });
+});
+
+/* ---- Accessory colour choice (homepage cards) ---- */
+document.querySelectorAll('.acc-sw').forEach(g=>{
+  const card=g.closest('.acc-card'), img=card.querySelector('.acc-img img'), wa=card.querySelector('.acc-wa');
+  const base=wa.dataset.acc, price=wa.dataset.price;
+  g.addEventListener('click',e=>{
+    const b=e.target.closest('.pb-sw'); if(!b) return;
+    const [src,colour]=b.dataset.accsw.split('|');
+    g.querySelectorAll('.pb-sw').forEach(x=>x.classList.toggle('on',x===b));
+    img.src=src;
+    wa.href=waText(`Hi The Plush House! I would like to add the *${base} (${colour})* (£${price}) to my order. Does it come in my sofa fabric?`);
   });
 });
 
