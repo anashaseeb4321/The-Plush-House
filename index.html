@@ -79,37 +79,7 @@ fbq('track', 'PageView');
 <noscript><img height="1" width="1" style="display:none"
 src="https://www.facebook.com/tr?id=2826953844350921&ev=PageView&noscript=1"/></noscript>
 
-<!-- Meta Pixel: fire a "Lead" event on ANY WhatsApp contact -->
-<!-- Covers: all wa.me link buttons (header, hero, floating icon, footer, product cards)
-     AND the modal "Place order" button which opens WhatsApp via window.open(). -->
-<script>
-document.addEventListener('click', function (e) {
-  var el = e.target.closest(
-    '#placeOrder'
-  );
-  if (!el) return;
-
-  // Meta Pixel — Lead on any WhatsApp contact
-  if (typeof fbq === 'function') { fbq('track', 'Lead'); }
-
-  // GA4 — whatsapp_click, tagged with the product name when we can tell which sofa
-  if (typeof gtag === 'function') {
-    var name = null;
-    try {
-      var slug = el.getAttribute && el.getAttribute('data-slug');
-      if (slug && typeof PRODUCTS !== 'undefined') {
-        var hit = PRODUCTS.find(function (p) { return p.slug === slug; });
-        if (hit) name = hit.name;
-      }
-      // modal buttons (ask / place order) carry no slug — fall back to the open product
-      if (!name && typeof currentProduct !== 'undefined' && currentProduct) {
-        name = currentProduct.name;
-      }
-    } catch (err) {}
-    gtag('event', 'whatsapp_click', name ? { product: name } : {});
-  }
-}, true); // capture phase = fires reliably even though these open a new tab
-</script>
+<!-- Lead / InitiateCheckout tracking for orders lives in /order-form.js (fires on a validated order, not on a click). -->
 
 <!-- ============================================================
      CONFIG — Your WhatsApp number is configured.
@@ -448,9 +418,9 @@ footer{border-top:1px solid var(--line-soft);background:var(--bg-2);padding:56px
 .m-foot-row{display:flex;align-items:center;gap:22px}
 .m-total{display:flex;flex-direction:column;line-height:1.05;flex:none}
 .m-foot .btn-wa{flex:1;width:auto;margin:0;padding:1.05em 1.4em;font-size:.98rem;justify-content:center}
-.m-foot-sub{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:6px 16px;margin-top:10px}
-.m-ask{font-size:.84rem;color:var(--brass-bright);text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--line)}
-.m-ask:hover{color:var(--ivory)}
+.m-foot-sub{margin-top:9px;text-align:center}
+.m-ask{flex:none;padding:1.05em 1.3em;border:1px solid var(--line);color:var(--ivory);font-size:.92rem;justify-content:center;white-space:nowrap}
+.m-ask:hover{border-color:var(--brass);color:var(--brass-bright);text-decoration:none}
 .modal-close{position:absolute;top:14px;right:16px;z-index:3;width:38px;height:38px;border-radius:50%;background:var(--surface);border:1px solid var(--line-soft);font-size:1.4rem;color:var(--muted);line-height:1;display:flex;align-items:center;justify-content:center}
 .modal-close:hover{color:var(--ivory)}
 .modal-content .m-name{font-family:'Cormorant Garamond','Cormorant FB1','Cormorant FB2',serif;font-size:2.3rem;font-weight:600;line-height:1.05;margin-bottom:6px}
@@ -581,7 +551,9 @@ textarea.form-control{resize:vertical;min-height:64px}
   .m-scroll{overflow:visible;flex:none;min-height:auto;padding:26px 20px 20px}
   .m-foot{position:sticky;bottom:0;padding:12px 16px 12px}
   .m-foot-row{gap:14px}
-  .m-foot .btn-wa{font-size:.9rem;padding:.95em 1em}
+  .m-foot .btn-wa{font-size:.95rem;padding:.95em 1em}
+  .m-foot-row{flex-wrap:wrap}
+  .m-ask{order:3;flex-basis:100%;padding:.7em 1em;font-size:.85rem}
   .m-sec-n{padding-left:0}
   .foot-grid{grid-template-columns:1fr 1fr}
 }
@@ -593,7 +565,7 @@ textarea.form-control{resize:vertical;min-height:64px}
   .pb-add{display:none}
   .pb-sw{font-size:.72rem;padding:4px 9px 4px 5px;gap:5px}
   .pb-sw i{width:13px;height:13px}
-  .m-foot-sub .cod-note{display:none}
+  .m-foot-sub{display:none}
   .nav-links{display:none}
   .burger{display:flex;flex-direction:column;gap:5px;padding:8px}
   .burger span{width:24px;height:2px;background:var(--ivory);display:block}
@@ -693,6 +665,7 @@ function addonImgErr(img){
 
 <!-- Google Analytics 4 — base loader (pageview + config). Swap the ID inside analytics.js -->
 <script src="/analytics.js" defer></script>
+<script src="/order-form.js" defer></script>
 <script type="application/ld+json">
 {
   "@context":"https://schema.org",
@@ -1140,38 +1113,16 @@ function addonImgErr(img){
           <div class="pb-addons" id="mPbAddons"></div>
         </div>
 
-        <div id="orderForm" class="order-form hidden">
-          <div class="m-sec"><span class="m-step">3</span><h4 class="m-sec-t">Your delivery details</h4></div>
-          <label class="form-label" for="fName">Your name</label>
-          <input class="form-control" id="fName" type="text" placeholder="Full name" autocomplete="name" />
-          <label class="form-label" for="fPhone">Phone number</label>
-          <input class="form-control" id="fPhone" type="tel" placeholder="07xxx xxxxxx" autocomplete="tel" />
-          <label class="form-label" for="fAddr">Delivery address</label>
-          <input class="form-control" id="fAddr" type="text" placeholder="House number &amp; street" autocomplete="street-address" />
-          <div class="form-row">
-            <div>
-              <label class="form-label" for="fTown">Town / city</label>
-              <input class="form-control" id="fTown" type="text" placeholder="Town" autocomplete="address-level2" />
-            </div>
-            <div>
-              <label class="form-label" for="fPostcode">Postcode</label>
-              <input class="form-control" id="fPostcode" type="text" placeholder="e.g. M1 2AB" autocomplete="postal-code" />
-            </div>
-          </div>
-        </div>
       </div>
 
       <div class="m-foot">
         <div class="m-foot-row">
           <div class="m-total"><span class="pb-total-label">Your total</span><span class="pb-total-price serif" id="mPbTotal">£0</span></div>
-          <button class="btn btn-wa" id="placeOrder"><svg class="wa-ic" viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.13c-1.5 0-2.97-.4-4.25-1.16l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.35c0-4.54 3.7-8.23 8.25-8.23 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.7 8.21-8.23 8.21Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.51.11-.11.25-.29.37-.43.13-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.28Z"/></svg><span id="placeOrderText">Order now — no payment required</span></button>
+          <a class="btn m-ask" id="askOrder" href="#" target="_blank" rel="noopener">Ask a question</a>
+          <button class="btn btn-wa" id="placeOrder"><svg class="wa-ic" viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.13c-1.5 0-2.97-.4-4.25-1.16l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.35c0-4.54 3.7-8.23 8.25-8.23 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.7 8.21-8.23 8.21Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.51.11-.11.25-.29.37-.43.13-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.28Z"/></svg><span id="placeOrderText">Order now</span></button>
         </div>
-        <div class="m-foot-sub">
-          <a class="m-ask" id="askOrder" href="#" target="_blank" rel="noopener">Ask us a question on WhatsApp</a>
-          <span class="cod-note">No payment now &middot; delivered, assembled &amp; placed in 24&ndash;72h &middot; settle in cash when happy</span>
-        </div>
+        <div class="m-foot-sub"><span class="cod-note">No payment now &middot; delivered, assembled &amp; placed in 24&ndash;72h &middot; settle in cash when happy</span></div>
       </div>
-    </div>
     </div>
   </div>
 </div>
@@ -1480,10 +1431,7 @@ async function openModal(slug){
   document.getElementById("mName").textContent=p.name;
   document.getElementById("mDesc").textContent=p.desc;
   // reset order form to hidden state
-  const of=document.getElementById("orderForm");
-  if(of) of.classList.add("hidden");
-  const pot=document.getElementById("placeOrderText");
-  if(pot) pot.textContent="Order now — no payment required";
+
   // tiered pricing (Chesterfield) vs standard single price
   const tierBox=document.getElementById("mTierBox");
   const sofaRow=document.getElementById("mPbSofaRow");
@@ -1556,43 +1504,15 @@ document.getElementById("modalClose").addEventListener("click",closeModal);
 modal.addEventListener("click",e=>{if(e.target===modal)closeModal()});
 document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModal()});
 
-/* place order from modal — first tap reveals the form, second tap sends */
+/* Order now -> "Place your order" form (order-form.js). Only name, number, address, postcode. */
 document.getElementById("placeOrder").addEventListener("click",()=>{
   if(!currentProduct) return;
-  const of=document.getElementById("orderForm");
-  const pot=document.getElementById("placeOrderText");
-  // Step 1: reveal the delivery form
-  if(of.classList.contains("hidden")){
-    of.classList.remove("hidden");
-    pot.textContent="Send my order on WhatsApp";
-    of.scrollIntoView({behavior:"smooth",block:"start"});
-    document.getElementById("fName").focus();
-    return;
-  }
-  // Step 2: build and send the order
-  const name=document.getElementById("fName").value.trim();
-  const phone=document.getElementById("fPhone").value.trim();
-  const addr=document.getElementById("fAddr").value.trim();
-  const town=document.getElementById("fTown").value.trim();
-  const postcode=document.getElementById("fPostcode").value.trim();
-  const total = calcModalTotal();
-  let extras=[];
-  selectedAddons().forEach(a=>extras.push(`${accLabel(a)} (+£${ACC_WITH_SOFA})`));
-  let msg=`Hi The Plush House! I'd like to order:\n\n`;
-  if(mChester.active){
-    msg+=`*${currentProduct.name}* — ${mChester.label} — £${mChester.base}\n`;
-  } else {
-    msg+=`*${currentProduct.name}* sofa — £${currentProduct.price}\n`;
-  }
-  if(extras.length) msg+=`Add-ons: ${extras.join(", ")}\n`;
-  msg+=`*Total: £${total}*\n\n`;
-  if(name) msg+=`Name: ${name}\n`;
-  if(phone) msg+=`Phone: ${phone}\n`;
-  if(addr) msg+=`Address: ${addr}\n`;
-  if(town) msg+=`Town/City: ${town}\n`;
-  if(postcode) msg+=`Postcode: ${postcode}\n`;
-  msg+=`\nPayment: In cash, after we deliver, assemble \u0026 place it\nDelivery: 24–72 hours`;
-  window.open(waText(msg),"_blank","noopener");
+  const lines=[];
+  lines.push(mChester.active ? [`${currentProduct.name} \u2014 ${mChester.label}`, mChester.base]
+                             : [`${currentProduct.name} sofa`, currentProduct.price]);
+  selectedAddons().forEach(a=>lines.push([accLabel(a), ACC_WITH_SOFA]));
+  const go=()=>window.tphOrder.open({product:currentProduct.name, lines, total:calcModalTotal()});
+  if(window.tphOrder) go(); else { const t=setInterval(()=>{ if(window.tphOrder){clearInterval(t);go();} },50); }
 });
 
 /* ---------- Mobile menu ---------- */

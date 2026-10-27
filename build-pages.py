@@ -271,9 +271,6 @@ header{position:sticky;top:0;z-index:50;background:rgba(22,18,26,.86);backdrop-f
 .pacts{display:flex;flex-direction:column;gap:10px}
 .pacts .btn{width:100%;padding:1.1em 1.6em;font-size:.96rem}
 .cod{font-size:.78rem;color:var(--muted-2);text-align:center;line-height:1.6;margin-top:14px}
-.oform{display:none;background:var(--surface);border:1px solid var(--line);border-radius:3px;padding:22px;margin-bottom:14px}
-.oform.open{display:block}
-.oform .bl{font-size:.68rem;letter-spacing:.26em;text-transform:uppercase;color:var(--brass);margin-bottom:14px}
 .fld{margin-bottom:12px}
 .fld label{display:block;font-size:.75rem;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px}
 .fld input,.fld textarea{width:100%;background:var(--bg);border:1px solid var(--line-soft);border-radius:2px;
@@ -361,6 +358,7 @@ src="https://www.facebook.com/tr?id=2826953844350921&ev=PageView&noscript=1"/></
   } }catch(e){}
 </script>
 <script src="/analytics.js" defer></script>
+<script src="/order-form.js" defer></script>
 """
 
 CONSENT = """
@@ -636,25 +634,10 @@ def product_page(p):
 
       <div class="builder" id="builder">%s<div class="total"><span class="tl">Your total</span><span class="tv" id="ttl">£%d</span></div></div>
 
-      <form class="oform" id="oform">
-        <div class="bl">Your details</div>
-        <div class="fld"><label for="f-name">Full name</label><input id="f-name" required></div>
-        <div class="two">
-          <div class="fld"><label for="f-phone">Phone number</label><input id="f-phone" type="tel" required></div>
-          <div class="fld"><label for="f-post">Postcode</label><input id="f-post" required></div>
-        </div>
-        <div class="fld"><label for="f-addr">Delivery address</label><input id="f-addr" required></div>
-        <div class="two">
-          <div class="fld"><label for="f-town">Town / city</label><input id="f-town" required></div>
-          <div class="fld"><label for="f-fab">Fabric / colour</label><input id="f-fab" placeholder="Not sure yet"></div>
-        </div>
-        <div class="fld"><label for="f-notes">Measurements or anything else</label><textarea id="f-notes" placeholder="Room size, custom dimensions, questions..."></textarea></div>
-        <button type="submit" class="btn btn-wa" style="width:100%%">%s Send my order on WhatsApp</button>
-      </form>
 
       <div class="pacts">
         <button class="btn btn-wa" id="placeBtn">%s Order now &mdash; no payment required</button>
-        <a class="btn btn-ghost" id="askBtn" href="#" target="_blank" rel="noopener">Ask a question on WhatsApp</a>
+        <a class="btn btn-ghost" id="askBtn" href="#" target="_blank" rel="noopener">Ask a question first &mdash; talk to our team</a>
       </div>
       <p class="cod">No payment now. Confirm on WhatsApp, our team delivers it within 24&ndash;72 hours, assembles it in your home and places it where you want it &mdash; and you settle in cash only once you are happy with it.</p>
     </div>
@@ -673,7 +656,7 @@ def product_page(p):
 %s
 """ % (cat["file"], catname, p["name"], p["slug"], photos[0], p["name"], thumbs,
        catname, p["name"], p["desc"], p["price"], opts, p["price"],
-       WA_IC, WA_IC, p["name"], p["long"], INCLUDED,
+       WA_IC, p["name"], p["long"], INCLUDED,
        ('<section class="sec"><div class="wrap"><h2 class="serif">More from the %s collection</h2>'
         '<div class="grid" style="margin-top:28px">%s</div></div></section>' % (catname, rel)) if rel else "")
 
@@ -727,26 +710,14 @@ def product_page(p):
     if(t && e.target===t && (e.key===' '||e.key==='Enter')){ e.preventDefault(); setOn(t,!t.classList.contains('active')); paint(); }
   });
   paint();
-  var form=document.getElementById('oform');
+  /* Order now -> "Place your order" form (/order-form.js): name, number, address, postcode */
   document.getElementById('placeBtn').addEventListener('click',function(){
-    if(!form.classList.contains('open')){
-      form.classList.add('open');
-      form.scrollIntoView({behavior:'smooth',block:'center'});
-      try{ if(typeof fbq==='function') fbq('track','InitiateCheckout',{content_name:PRODUCT,value:window.__total,currency:'GBP'}); }catch(e){}
-    } else { form.requestSubmit(); }
-  });
-  form.addEventListener('submit',function(e){
-    e.preventDefault();
-    var v=function(id){ return (document.getElementById(id).value||'').trim(); };
-    var m=window.__msg;
-    m+='\\n\\nName: '+v('f-name')+'\\nPhone: '+v('f-phone');
-    m+='\\nAddress: '+v('f-addr')+', '+v('f-town')+', '+v('f-post');
-    if(v('f-fab')) m+='\\nFabric / colour: '+v('f-fab');
-    if(v('f-notes')) m+='\\nNotes: '+v('f-notes');
-    m+='\\n\\nPayment: In cash, after you deliver, assemble & place it';
-    try{ if(typeof fbq==='function') fbq('track','Lead',{content_name:PRODUCT,value:window.__total,currency:'GBP'}); }catch(e){}
-    try{ if(typeof gtag==='function') gtag('event','generate_lead',{product:PRODUCT,value:window.__total,currency:'GBP'}); }catch(e){}
-    window.open('https://wa.me/'+WA+'?text='+encodeURIComponent(m),'_blank','noopener');
+    var lines=[[ (label==='Standard' ? PRODUCT+' sofa' : PRODUCT+' \u2014 '+label), base ]];
+    box.querySelectorAll('.addon.active').forEach(function(a){
+      lines.push([a.dataset.label+(a.dataset.colour?' ('+a.dataset.colour+')':''), parseInt(a.dataset.price,10)]);
+    });
+    var go=function(){ window.tphOrder.open({product:PRODUCT, lines:lines, total:total()}); };
+    if(window.tphOrder) go(); else { var t=setInterval(function(){ if(window.tphOrder){clearInterval(t);go();} },50); }
   });
   try{ if(typeof fbq==='function') fbq('track','ViewContent',{content_name:PRODUCT,value:base,currency:'GBP'}); }catch(e){}
   try{ if(typeof gtag==='function') gtag('event','view_item',{product:PRODUCT,value:base,currency:'GBP'}); }catch(e){}
