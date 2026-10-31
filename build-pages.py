@@ -18,7 +18,7 @@ TODAY  = "2026-10-13"
 
 # slug = image folder name. url = page filename inside /sofas/.
 PRODUCTS = [
- dict(slug="lilly-corner",  url="lilly-corner-sofa",          name="Lilly Corner",         price=799,  cat="corner",
+ dict(slug="lilly-corner",  url="lilly-corner-sofa",          name="Lilly Corner",         price=929,  cat="corner",
       desc="Soft channel-stitched styling with plush, pillow-back comfort. The Lilly corner is a warm, inviting centrepiece for any family living room.",
       long="The Lilly is the sofa most of our customers come back to. Deep channel stitching across the back, a generous pillow-back that you sink into rather than perch on, and a corner footprint that turns an awkward wall into the best seat in the house. Made to your own measurements, in any of our fabrics or in leather."),
  dict(slug="ashton-corner", url="ashton-corner-sofa",         name="Ashton Corner",        price=849,  cat="corner",
@@ -466,8 +466,14 @@ def thumb(slug, f):
             return "/images/%s/%s" % (slug, f)      # no Pillow: fall back to the full photo
     return "/images/%s/thumbs/%s" % (slug, f)
 
+# Products that show only some of their photos, in a set order.
+PHOTO_ORDER = {
+    "lilly-corner": ["1.jpg", "5.jpg", "8.jpg", "7.jpg"],   # same photos as Sofa Stitch's Original Lilly
+}
+
 def imgs(slug):
     """Actual numbered photos in the folder, in order. Numbering can have gaps."""
+    if slug in PHOTO_ORDER: return list(PHOTO_ORDER[slug])
     d = os.path.join("images", slug)
     if not os.path.isdir(d): return []
     out = []
