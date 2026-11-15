@@ -18,43 +18,43 @@ TODAY  = "2026-10-13"
 
 # slug = image folder name. url = page filename inside /sofas/.
 PRODUCTS = [
- dict(slug="lilly-corner",  url="lilly-corner-sofa",          name="Lilly Corner",         price=929,  cat="corner",
+ dict(slug="lilly-corner",  url="lilly-corner-sofa",          name="Lilly Corner",         price=849,  cat="corner",
       desc="Soft channel-stitched styling with plush, pillow-back comfort. The Lilly corner is a warm, inviting centrepiece for any family living room.",
       long="The Lilly is the sofa most of our customers come back to. Deep channel stitching across the back, a generous pillow-back that you sink into rather than perch on, and a corner footprint that turns an awkward wall into the best seat in the house. Made to your own measurements, in any of our fabrics or in leather."),
- dict(slug="ashton-corner", url="ashton-corner-sofa",         name="Ashton Corner",        price=849,  cat="corner",
+ dict(slug="ashton-corner", url="ashton-corner-sofa",         name="Ashton Corner",        price=899,  cat="corner",
       desc="A clean-lined corner sofa with deep cushioning and a contemporary silhouette. Perfect for modern living spaces.",
       long="Where the Lilly is soft and relaxed, the Ashton is sharp. Straight arms, a tailored back and deep seats that hold their shape — a corner sofa for a room where the lines matter. Available in leather or any of our fabrics, and built to the measurements of your space."),
  dict(slug="verona-corner", url="verona-corner-sofa",         name="Verona Corner",        price=699,  cat="corner",
       desc="Italian-inspired elegance meets everyday comfort. The Verona is a statement piece for any living room.",
       long="Italian-inspired proportions with a low, elegant profile and a corner that wraps the room without crowding it. The Verona is our most accessible corner sofa and still built the same way as the rest of the range — solid frame, deep fill, made to your measurements."),
- dict(slug="shannon-corner",url="harrison-corner-sofa",       name="Harrison Corner",      price=749,  cat="corner",
+ dict(slug="shannon-corner",url="harrison-corner-sofa",       name="Harrison Corner",      price=699,  cat="corner",
       desc="Timeless and robust, the Harrison brings classic British furniture craftsmanship to your home.",
       long="A classic British corner sofa: rolled arms, stud detailing and a scatter-back that softens the whole room. The Harrison suits a traditional room without feeling dated, and it is built to take years of family use."),
- dict(slug="olympia-corner",url="olympia-corner-sofa",        name="Olympia Corner",       price=749,  cat="corner",
+ dict(slug="olympia-corner",url="olympia-corner-sofa",        name="Olympia Corner",       price=699,  cat="corner",
       desc="Grand and inviting, the Olympia offers generous seating with an elegant corner configuration.",
       long="The Olympia is the most generous corner in the range — wide seats, a tall back and room for the whole household without the sofa dominating the floor. A good choice for a large open-plan living room."),
- dict(slug="borius",        url="borius-corner-sofa",         name="Borius",               price=799,  cat="corner",
+ dict(slug="borius",        url="borius-corner-sofa",         name="Borius",               price=859,  cat="corner",
       desc="Bold proportions and sumptuous cushioning. The Borius makes a powerful statement without sacrificing everyday comfort.",
       long="Bold, squared-off proportions on slim metal feet, with cushioning deep enough to disappear into. The Borius is a corner sofa with presence — it anchors a room rather than lining its walls."),
 
- dict(slug="ushape",        url="u-shape-sofa",               name="U-Shape",              price=799,  cat="ushape",
+ dict(slug="ushape",        url="u-shape-sofa",               name="U-Shape",              price=839,  cat="ushape",
       desc="The ultimate family sofa. Our U-Shape collection wraps your room in comfort with generous seating for the whole household.",
       long="A U-shape puts everybody in the conversation. Seating for six to eight, a wraparound footprint that makes a large room feel finished, and the same deep-fill cushioning as the rest of the range. Built to your own measurements so it fits the room exactly."),
- dict(slug="lilly-ushape",  url="lilly-u-shape-sofa",         name="Lilly U-Shape",        price=849,  cat="ushape",
+ dict(slug="lilly-ushape",  url="lilly-u-shape-sofa",         name="Lilly U-Shape",        price=919,  cat="ushape",
       desc="The Lilly in a wraparound U-shape — generous family seating with the same soft channel-stitched finish.",
       long="The Lilly design opened out into a full U-shape: the same channel-stitched back and plush pillow cushions, wrapped around three sides of the room. The family sofa for people who do not want to compromise on the finish."),
 
  dict(slug="lshape",        url="l-shape-sofa",               name="L-Shape",              price=849,  cat="lshape",
       desc="A space-smart L-shape sofa that fits neatly into modern rooms without sacrificing comfort or seating.",
       long="An L-shape gives you corner seating in a smaller footprint — six seats in a frame that still leaves the room breathing space. A good answer for a modern living room that cannot take a full corner."),
- dict(slug="lilly-lshape",  url="lilly-l-shape-sofa",         name="Lilly L-Shape",        price=849,  cat="lshape",
+ dict(slug="lilly-lshape",  url="lilly-l-shape-sofa",         name="Lilly L-Shape",        price=949,  cat="lshape",
       desc="The Lilly in a space-smart L-shape — plush channel-stitched comfort that fits neatly into modern rooms.",
       long="The Lilly finish on a compact L-shape frame. Channel-stitched back, deep pillow seats and a shorter return so it slots into a room a full corner would overwhelm."),
- dict(slug="ashton-lshape", url="ashton-l-shape-sofa",        name="Ashton L-Shape",       price=849,  cat="lshape",
+ dict(slug="ashton-lshape", url="ashton-l-shape-sofa",        name="Ashton L-Shape",       price=949,  cat="lshape",
       desc="The Ashton in a compact L-shape — contemporary styling and deep comfort, perfect for modern living spaces.",
       long="Clean Ashton lines on an L-shape frame — tailored, contemporary and sized for a modern living room. Made to your measurements in leather or any of our fabrics."),
 
- dict(slug="lilly-set",     url="lilly-2-and-3-seater-sofa",  name="Lilly 2+3 Seater",     price=1149, cat="sets",
+ dict(slug="lilly-set",     url="lilly-2-and-3-seater-sofa",  name="Lilly 2+3 Seater",     price=949, cat="sets",
       desc="The Lilly two-seater and three-seater set — the same plush channel-stitched design, sold as a matching pair to fill your living room.",
       long="A matching two-seater and three-seater in the Lilly design. Two sofas facing each other change a room far more than one large corner, and this pair arrives, is built and is placed in a single visit."),
  dict(slug="shannon-set",   url="harrison-2-and-3-seater-sofa",name="Harrison 2+3 Seater", price=799,  cat="sets",
@@ -63,19 +63,19 @@ PRODUCTS = [
  dict(slug="verona-set",    url="olympia-2-and-3-seater-sofa",name="Olympia 2+3 Seater",   price=799,  cat="sets",
       desc="The Olympia two-seater and three-seater set — grand, elegant proportions, sold as a matching pair.",
       long="The Olympia proportions split across a two-seater and a three-seater. Generous seats, an elegant profile and the flexibility to lay out a room however you like."),
- dict(slug="elaska",        url="elaska-sofa",                name="Elaska 2+3 Seater",    price=899,  cat="sets",
+ dict(slug="elaska",        url="elaska-sofa",                name="Elaska 2+3 Seater",    price=799,  cat="sets",
       desc="Deep button-tufted arms and base, bolster cushions and a low, clean frame — a two-seater and three-seater sold as a matching pair.",
       long="Deep button tufting on the arms and base, bolster cushions and a low, geometric frame, supplied as a matching two-seater and three-seater. The Elaska is the quietest set in the range and the one that reads most expensive in a plain room."),
 
  dict(slug="ashton-set",    url="italian-chesterfield-sofa",  name="Italian Chesterfield", price=949,  cat="chesterfield",
       desc="A deep-buttoned Italian take on the Chesterfield — two-seater and three-seater, sold as a matching pair.",
       long="An Italian reading of the Chesterfield: the deep buttoning and the low back are there, but the arms are cleaner and the proportions lighter. Supplied as a matching two-seater and three-seater."),
- dict(slug="chesterfield",  url="ambassador-sofa",            name="Ambassador",           price=1049, cat="chesterfield",
+ dict(slug="chesterfield",  url="ambassador-sofa",            name="Ambassador",           price=1099, cat="chesterfield",
       desc="An icon of British design — deep button tufting, rolled arms and a polished gold base. Sold as a complete set, or piece by piece.",
       long="The Ambassador is the most decorative piece we make: full diamond buttoning, rolled arms and a polished gold base that lifts the whole thing off the floor. Take the three-and-two set, add the single chair for a full suite, or buy a single piece and build up over time.",
       setsFirst=True,
-      sets=[["3+2 Seater Set",1049,"Save £149"],["Full Set 3+2+1",1349,"Save £248"]],
-      tiers=[["1 Seater",399],["2 Seater",549],["3 Seater",649]],
+      sets=[["3+2 Seater Set",1099,"Save £199"],["Full Set 3+2+1",1399,"Save £348"]],
+      tiers=[["1 Seater",449],["2 Seater",599],["3 Seater",699]],
       setNote="Any matching table or stool is £179 with a sofa · delivered and placed with it"),
  dict(slug="ambassador",    url="chesterfield-sofa",          name="Chesterfield",         price=1249, cat="chesterfield",
       desc="Commanding presence, exceptional comfort. The Chesterfield is built for those who don't compromise on their living space.",
@@ -193,6 +193,10 @@ a:hover{text-decoration:underline}
 .ribbon{background:linear-gradient(90deg,var(--bg-2),var(--plum),var(--bg-2));border-bottom:1px solid var(--line-soft);
  color:var(--ivory);font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;text-align:center;padding:9px 16px;line-height:1.45}
 .ribbon b{color:var(--brass-bright);font-weight:600}
+.nofin{background:rgba(201,168,106,.10);border-bottom:1px solid rgba(201,168,106,.35);color:var(--ivory,#F2ECE3);text-align:center;font-size:.8rem;letter-spacing:.06em;padding:9px 16px}
+.nofin b{color:var(--brass-bright,#E0C58C);font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+.nofin-note{display:block;margin-top:6px;font-size:.78rem;color:var(--brass-bright,#E0C58C);font-weight:600;letter-spacing:.03em}
+@media(max-width:620px){.nofin{font-size:.7rem;padding:8px 12px}}
 header{position:sticky;top:0;z-index:50;background:rgba(22,18,26,.86);backdrop-filter:blur(14px);border-bottom:1px solid var(--line-soft)}
 .nav{display:flex;align-items:center;justify-content:space-between;height:74px;gap:18px}
 .brand{display:flex;align-items:center;gap:12px;color:var(--ivory)}
@@ -394,6 +398,7 @@ CONSENT = """
 def header(depth=0):
     root = "/" if depth == 0 else "/"
     return """<div class="ribbon">We deliver it, assemble it in your home and place it where you want it — <b>you settle only when you are happy</b></div>
+<div class="nofin"><b>No finance &middot; No monthly plans</b> &mdash; full payment on delivery, by cash or bank transfer</div>
 <header>
   <div class="wrap nav">
     <a href="/" class="brand"><span class="brand-mark">%s</span><span class="name serif">The Plush <b>House</b></span></a>
@@ -645,7 +650,7 @@ def product_page(p):
         <button class="btn btn-wa" id="placeBtn">%s Order now &mdash; no payment required</button>
         <a class="btn btn-ghost" id="askBtn" href="#" target="_blank" rel="noopener">Ask a question first &mdash; talk to our team</a>
       </div>
-      <p class="cod">No payment now. Confirm on WhatsApp, our team delivers it within 24&ndash;72 hours, assembles it in your home and places it where you want it &mdash; and you settle in cash only once you are happy with it.</p>
+      <p class="cod">No payment now. Confirm on WhatsApp, our team delivers it within 24&ndash;72 hours, assembles it in your home and places it where you want it &mdash; and you settle in cash only once you are happy with it.<span class="nofin-note">No finance or monthly plans &middot; full payment on delivery, cash or bank transfer</span></p>
     </div>
   </div>
 </div>

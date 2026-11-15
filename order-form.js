@@ -48,6 +48,7 @@
   '.op-send{width:100%;display:flex;align-items:center;justify-content:center;gap:10px;border:0;border-radius:4px;background:var(--wa,#25D366);color:#07301A;font:inherit;font-weight:700;font-size:1rem;padding:15px;cursor:pointer;margin-top:4px}' +
   '.op-send:hover{background:#1FBE5B}' +
   '.op-send svg{width:1.15em;height:1.15em;fill:currentColor}' +
+  '.op-nofin{display:block;margin-top:6px;color:#E0C58C;font-weight:600}' +
   '.op-note{font-size:.78rem;color:var(--muted-2,#958BA0);text-align:center;margin:10px 0 0;line-height:1.5}' +
   '.op-or{display:flex;align-items:center;gap:12px;margin:20px 30px 0;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted-2,#958BA0)}' +
   '.op-or:before,.op-or:after{content:"";flex:1;height:1px;background:var(--line-soft,rgba(242,236,227,.08))}' +
@@ -81,7 +82,7 @@
           '<div class="op-f"><label for="opAddr">Delivery address <i>*</i></label><textarea id="opAddr" autocomplete="street-address" placeholder="House number, street and town"></textarea><div class="op-err">Please enter the full delivery address.</div></div>' +
           '<div class="op-f" style="max-width:220px"><label for="opPost">Postcode <i>*</i></label><input id="opPost" autocomplete="postal-code" autocapitalize="characters" placeholder="e.g. M1 2AB"><div class="op-err">Please enter a valid UK postcode.</div></div>' +
           '<button type="submit" class="op-send">' + WA_SVG + '<span>Send my order on WhatsApp</span></button>' +
-          '<p class="op-note">We confirm on WhatsApp, then deliver, assemble and place it in your home within 24&ndash;72 hours. You settle in cash only once you are happy.</p>' +
+          '<p class="op-note">We confirm on WhatsApp, then deliver, assemble and place it in your home within 24&ndash;72 hours. You settle in cash only once you are happy.<span class="op-nofin">No finance or monthly plans &middot; full payment on delivery, cash or bank transfer</span></p>' +
         '</form>' +
         '<div class="op-or">or</div>' +
         '<a class="op-ask" id="opAsk" href="#" target="_blank" rel="noopener">' + WA_SVG.replace('<svg', '<svg style="width:1.1em;height:1.1em;fill:currentColor"') +
