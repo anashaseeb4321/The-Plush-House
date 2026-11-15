@@ -154,6 +154,10 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
   text-align:center;padding:9px 16px;line-height:1.45;
 }
 .ribbon b{color:var(--brass-bright);font-weight:600}
+.nofin{background:rgba(201,168,106,.10);border-bottom:1px solid rgba(201,168,106,.35);color:var(--ivory,#F2ECE3);text-align:center;font-size:.8rem;letter-spacing:.06em;padding:9px 16px}
+.nofin b{color:var(--brass-bright,#E0C58C);font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+.nofin-note{display:block;margin-top:6px;font-size:.78rem;color:var(--brass-bright,#E0C58C);font-weight:600;letter-spacing:.03em}
+@media(max-width:620px){.nofin{font-size:.7rem;padding:8px 12px}}
 @media(max-width:620px){ .ribbon{font-size:.68rem;letter-spacing:.04em;padding:8px 12px} }
 
 /* ---------- Header ---------- */
@@ -684,6 +688,7 @@ function addonImgErr(img){
   "@context":"https://schema.org",
   "@type":"FAQPage",
   "mainEntity":[
+    {"@type":"Question","name":"Do you offer finance or monthly payment plans?","acceptedAnswer":{"@type":"Answer","text":"No. We don't offer finance, credit or monthly payment plans. Payment is in full on the day of delivery, once your sofa is assembled and you are happy with it, by cash or bank transfer."}},
     {"@type":"Question","name":"How and when do I settle?","acceptedAnswer":{"@type":"Answer","text":"In cash, at the very end. Nothing is paid online and there is no deposit. Our team delivers the sofa, carries it into your home, assembles it and places it where you want it, and only then do you settle. If you are not happy with it once it is standing there, you pay nothing and it leaves with us."}},
     {"@type":"Question","name":"What happens on the day it arrives?","acceptedAnswer":{"@type":"Answer","text":"Our team brings it to your door, carries it into the room you want it in, assembles it, places it exactly where you would like it and takes the packaging away. It is how every Plush House sofa is delivered, and it is already reflected in the price shown on the product."}},
     {"@type":"Question","name":"How long does delivery take?","acceptedAnswer":{"@type":"Answer","text":"Most orders are delivered and placed within 24 to 72 hours. The exact window depends on your sofa and your location, and we confirm a specific date with you on WhatsApp before dispatch."}},
@@ -697,6 +702,7 @@ function addonImgErr(img){
 
 <!-- HEADER -->
 <div class="ribbon">We deliver it, assemble it in your home and place it where you want it — <b>you settle only when you are happy</b></div>
+<div class="nofin"><b>No finance &middot; No monthly plans</b> &mdash; full payment on delivery, by cash or bank transfer</div>
 <header>
   <div class="wrap nav">
     <a href="#top" class="brand" id="brandHeader">
@@ -973,6 +979,10 @@ function addonImgErr(img){
     </div>
     <div class="faq-list reveal" id="faqList">
       <div class="faq-item">
+        <button class="faq-q">Do you offer finance or monthly payment plans?</button>
+        <div class="faq-a"><p>No. We don&rsquo;t offer finance, credit or monthly payment plans. Payment is in full on the day of delivery, once your sofa is assembled and you are happy with it &mdash; by cash or bank transfer.</p></div>
+      </div>
+      <div class="faq-item">
         <button class="faq-q">How and when do I settle?</button>
         <div class="faq-a"><p>In cash, at the very end. Nothing is paid online and there is no deposit. Our team delivers the sofa, carries it into your home, assembles it and places it where you want it &mdash; and only then do you settle. If you are not happy with it once it is standing there, you pay nothing and it leaves with us.</p></div>
       </div>
@@ -1121,7 +1131,7 @@ function addonImgErr(img){
           <a class="btn m-ask" id="askOrder" href="#" target="_blank" rel="noopener">Ask a question</a>
           <button class="btn btn-wa" id="placeOrder"><svg class="wa-ic" viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.13c-1.5 0-2.97-.4-4.25-1.16l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.35c0-4.54 3.7-8.23 8.25-8.23 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.7 8.21-8.23 8.21Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.51.11-.11.25-.29.37-.43.13-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.28Z"/></svg><span id="placeOrderText">Order now</span></button>
         </div>
-        <div class="m-foot-sub"><span class="cod-note">No payment now &middot; delivered, assembled &amp; placed in 24&ndash;72h &middot; settle in cash when happy</span></div>
+        <div class="m-foot-sub"><span class="cod-note">No payment now &middot; delivered, assembled &amp; placed in 24&ndash;72h &middot; settle in cash when happy</span><span class="nofin-note">No finance or monthly plans &middot; full payment on delivery, cash or bank transfer</span></div>
       </div>
     </div>
   </div>
@@ -1136,45 +1146,45 @@ function addonImgErr(img){
    differs from UK Sofa Hub (#1) and Barki (#2). Photos are NOT mirrored.
 ============================================================ */
 const PRODUCTS = [
-  { slug:"ushape", photos:["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg", "7.jpg", "8.jpg"], url:"u-shape-sofa", name:"U-Shape", price:799, images:8, tag:"Family Favourite", stool:"add", cover:4,
+  { slug:"ushape", photos:["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg", "7.jpg", "8.jpg"], url:"u-shape-sofa", name:"U-Shape", price:839, images:8, tag:"Family Favourite", stool:"add", cover:4,
     desc:"The ultimate family sofa. Our U-Shape collection wraps your room in comfort with generous seating for the whole household." },
-  { slug:"lilly-corner", photos:["1.jpg", "5.jpg", "8.jpg", "7.jpg"], url:"lilly-corner-sofa", name:"Lilly Corner", price:929, images:4, tag:"Bestseller", stool:"add",
+  { slug:"lilly-corner", photos:["1.jpg", "5.jpg", "8.jpg", "7.jpg"], url:"lilly-corner-sofa", name:"Lilly Corner", price:849, images:4, tag:"Bestseller", stool:"add",
     desc:"Soft channel-stitched styling with plush, pillow-back comfort. The Lilly corner is a warm, inviting centrepiece for any family living room." },
-  { slug:"ashton-corner", photos:["1.jpg", "2.jpg", "3.jpg", "4.jpg"], url:"ashton-corner-sofa", name:"Ashton Corner", price:849, images:4, tag:"", stool:"add", cover:"last",
+  { slug:"ashton-corner", photos:["1.jpg", "2.jpg", "3.jpg", "4.jpg"], url:"ashton-corner-sofa", name:"Ashton Corner", price:899, images:4, tag:"", stool:"add", cover:"last",
     desc:"A clean-lined corner sofa with deep cushioning and a contemporary silhouette. Perfect for modern living spaces." },
   { slug:"verona-corner", photos:["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg"], url:"verona-corner-sofa", name:"Verona Corner", price:699, images:5, tag:"Bestseller", stool:"add", cover:2,
     desc:"Italian-inspired elegance meets everyday comfort. The Verona is a statement piece for any living room." },
-  { slug:"lilly-set", photos:["1.jpg", "2.jpg"], url:"lilly-2-and-3-seater-sofa", name:"Lilly 2+3 Seater", price:1149, images:2, tag:"", cover:1,
+  { slug:"lilly-set", photos:["1.jpg", "2.jpg"], url:"lilly-2-and-3-seater-sofa", name:"Lilly 2+3 Seater", price:949, images:2, tag:"", cover:1,
     desc:"The Lilly two-seater and three-seater set — the same plush channel-stitched design, sold as a matching pair to fill your living room." },
-  { slug:"lilly-ushape", photos:["1.jpg", "2.jpg", "3.jpg"], url:"lilly-u-shape-sofa", name:"Lilly U-Shape", price:849, images:3, tag:"", stool:"add", cover:2,
+  { slug:"lilly-ushape", photos:["1.jpg", "2.jpg", "3.jpg"], url:"lilly-u-shape-sofa", name:"Lilly U-Shape", price:919, images:3, tag:"", stool:"add", cover:2,
     desc:"The Lilly in a wraparound U-shape — generous family seating with the same soft channel-stitched finish." },
-  { slug:"lilly-lshape", photos:["1.jpg", "2.jpg", "3.jpg", "4.jpg"], url:"lilly-l-shape-sofa", name:"Lilly L-Shape", price:849, images:4, tag:"", stool:"add",
+  { slug:"lilly-lshape", photos:["1.jpg", "2.jpg", "3.jpg", "4.jpg"], url:"lilly-l-shape-sofa", name:"Lilly L-Shape", price:949, images:4, tag:"", stool:"add",
     desc:"The Lilly in a space-smart L-shape — plush channel-stitched comfort that fits neatly into modern rooms." },
   { slug:"ashton-set", photos:["1.jpg"], url:"italian-chesterfield-sofa", name:"Italian Chesterfield", price:949, images:1, tag:"",
     desc:"A deep-buttoned Italian take on the Chesterfield — two-seater and three-seater, sold as a matching pair." },
-  { slug:"ashton-lshape", photos:["1.jpg"], url:"ashton-l-shape-sofa", name:"Ashton L-Shape", price:849, images:1, tag:"", stool:"add",
+  { slug:"ashton-lshape", photos:["1.jpg"], url:"ashton-l-shape-sofa", name:"Ashton L-Shape", price:949, images:1, tag:"", stool:"add",
     desc:"The Ashton in a compact L-shape — contemporary styling and deep comfort, perfect for modern living spaces." },
-  { slug:"shannon-corner", photos:["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg"], url:"harrison-corner-sofa", name:"Harrison Corner", price:749, images:5, tag:"", stool:"add", cover:"last",
+  { slug:"shannon-corner", photos:["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg"], url:"harrison-corner-sofa", name:"Harrison Corner", price:699, images:5, tag:"", stool:"add", cover:"last",
     desc:"Timeless and robust, the Harrison brings classic British furniture craftsmanship to your home." },
   { slug:"shannon-set", photos:["1.jpg"], url:"harrison-2-and-3-seater-sofa", name:"Harrison 2+3 Seater", price:799, images:1, tag:"",
     desc:"The Harrison two-seater and three-seater set — timeless British craftsmanship, sold as a matching pair." },
-  { slug:"olympia-corner", photos:["1.jpg", "2.jpg", "3.jpg", "4.jpg"], url:"olympia-corner-sofa", name:"Olympia Corner", price:749, images:4, tag:"", stool:"add",
+  { slug:"olympia-corner", photos:["1.jpg", "2.jpg", "3.jpg", "4.jpg"], url:"olympia-corner-sofa", name:"Olympia Corner", price:699, images:4, tag:"", stool:"add",
     desc:"Grand and inviting, the Olympia offers generous seating with an elegant corner configuration." },
   { slug:"verona-set", photos:["1.jpg", "2.jpg"], url:"olympia-2-and-3-seater-sofa", name:"Olympia 2+3 Seater", price:799, images:2, tag:"",
     desc:"The Olympia two-seater and three-seater set — grand, elegant proportions, sold as a matching pair." },
   { slug:"lshape", photos:["1.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg"], url:"l-shape-sofa", name:"L-Shape", price:849, images:6, tag:"", stool:"add",
     desc:"A space-smart L-shape sofa that fits neatly into modern rooms without sacrificing comfort or seating." },
-  { slug:"chesterfield", photos:["1.jpg"], url:"ambassador-sofa", name:"Ambassador", price:1049, images:1, tag:"Iconic", stool:"add", setsFirst:true,
-    tiers:[["1 Seater",399],["2 Seater",549],["3 Seater",649]],
-    sets:[["3+2 Seater Set",1049,"Save £149"],["Full Set 3+2+1",1349,"Save £248"]],
+  { slug:"chesterfield", photos:["1.jpg"], url:"ambassador-sofa", name:"Ambassador", price:1099, images:1, tag:"Iconic", stool:"add", setsFirst:true,
+    tiers:[["1 Seater",449],["2 Seater",599],["3 Seater",699]],
+    sets:[["3+2 Seater Set",1099,"Save £199"],["Full Set 3+2+1",1399,"Save £348"]],
     setNote:"Any matching table or stool is £179 with a sofa · delivered and placed with it",
     desc:"An icon of British design — deep button tufting, rolled arms and a polished gold base. Sold as a complete set, or piece by piece." },
-  { slug:"borius", photos:["1.jpg", "2.jpg", "3.jpg"], url:"borius-corner-sofa", name:"Borius", price:799, images:3, tag:"", stool:"add",
+  { slug:"borius", photos:["1.jpg", "2.jpg", "3.jpg"], url:"borius-corner-sofa", name:"Borius", price:859, images:3, tag:"", stool:"add",
     desc:"Bold proportions and sumptuous cushioning. The Borius makes a powerful statement without sacrificing everyday comfort." },
   { slug:"ambassador", photos:["1.jpg"], url:"chesterfield-sofa", name:"Chesterfield", price:1249, images:1, tag:"Premium", stool:"add",
     tiers:[["Without table",1249],["With table",1449]],
     desc:"Commanding presence, exceptional comfort. The Chesterfield is built for those who don't compromise on their living space." },
-  { slug:"elaska", photos:["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg"], url:"elaska-sofa", name:"Elaska 2+3 Seater", price:899, images:6, tag:"Premium", stool:"add",
+  { slug:"elaska", photos:["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg"], url:"elaska-sofa", name:"Elaska 2+3 Seater", price:799, images:6, tag:"Premium", stool:"add",
     desc:"Deep button-tufted arms and base, bolster cushions and a low, clean frame \u2014 a two-seater and three-seater sold as a matching pair." },
 ];
 
